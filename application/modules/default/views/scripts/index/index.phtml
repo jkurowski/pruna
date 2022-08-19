@@ -1,0 +1,175 @@
+<section id="mainHeader">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-7 d-flex justify-content-start align-items-center">
+                <div class="section-img">
+                    <img src="<?=$this->gfxUrl();?>/header-osiedle.jpg" alt="Wizualizacja osiedla" width="1120" height="1120">
+                </div>
+            </div>
+            <div class="col-5 d-flex align-items-center justify-content-start">
+                <div class="section-apla-text">
+                    <h2 class="section-title mb-5">Kameralne osiedle w otoczeniu <span>natury</span></h2>
+                    <p>Wyjątkowa koncepcja architektoniczna, która łączy w sobie zarówno mieszkania jak i segmenty w spójnej, kameralnej przestrzeni – jest to unikatowa propozycja na płońskim rynku.</p>
+                    <p>&nbsp;</p>
+                    <p>Ustronne osiedle blisko zieleni to idealne miejsce do życia. Wybierz swój nowy dom pośród 3 i 4 pokojowych mieszkań w niskiej zabudowie oraz segmentów.</p>
+                    <div class="text-center scrollsection">
+                        <a href="#mainLocationText" class="bttn bttn-sm" data-offset="0">CZYTAJ WIĘCEJ</a>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12"><div class="sep-hr"></div></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="section-title">Chcesz być na bieżąco?</h3>
+                        <p>Już teraz zapisz się ..... uspendisse quis ante sed sem tincidunt sollicitudin at sed arcu.</p>
+                        <div class="scrollsection">
+                            <a href="#mainContact" data-offset="0" class="bttn">WYPEŁNIJ FORMULARZ</a>
+                        </div>
+
+                        <p class="big-text mt-4">lub zadzwoń: <a href="tel:+48696651133"><b>+48 696 651 133</b></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="mainLocationText">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-5 d-flex align-items-center justify-content-end">
+                <div class="section-apla-text section-apla-text-left">
+                    <h2 class="section-title mb-5">Osiedle Sadyba <br><span>Na wyciągnięcie ręki</span></h2>
+                    <p>Osiedle Sadyba położone jest w Płońsku między ulicami Szkolną i Spokojną, otoczone zielenią i zabudową jednorodzinną. Bliskość centrum miasta oraz dogodny dojazd do trasy wyjazdowych z miasta potęguje wygodę i elastyczność życia.</p>
+                    <p>&nbsp;</p>
+                    <p>W pierwszej kolejności realizujemy 48 lokali (24 mieszkania i 24 segmenty), które wyróżniają się przemyślanymi i dopracowanymi rozkładami, wysoką jakością materiałów, miejscem relaksu w postaci własnego ogródka/ balkonu oraz wygodnymi dwoma miejscami parkingowymi.</p>
+                </div>
+            </div>
+            <div class="col-7 d-flex justify-content-end align-items-center">
+                <div class="section-img">
+                    <img src="<?=$this->gfxUrl();?>/lokalizacja-osiedle.jpg" alt="Wizualizacja osiedla" width="1120" height="1120">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="mapHolder"></div>
+
+<section id="mainGallery">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="section-title">Galeria</h2>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-7"><div class="sep-hr"></div></div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <?php foreach($this->photos as $photo) {?>
+                <div class="col-4">
+                    <a href="<?=$this->filesUrl();?>/galeria/big/<?=$photo->plik;?>" class="swipebox"><img src="<?=$this->filesUrl();?>/galeria/thumbs/<?=$photo->plik;?>" alt="Wizualizacja inwestycji"></a>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</section>
+
+<section id="mainInvestor">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-7 d-flex justify-content-start align-items-center">
+                <div class="section-img">
+                    <img src="<?=$this->gfxUrl();?>/inwestor-osiedle.jpg" alt="Wizualizacja osiedla" width="1120" height="1120">
+                </div>
+            </div>
+            <div class="col-5 d-flex align-items-center justify-content-start">
+                <div class="section-apla-text">
+                    <h2 class="section-title mb-5">Klika słów <br><span>o deweloperze</span></h2>
+                    <p>Osiedle Sadyba realizuje PRUNA DEVELOPMENT sp. z o.o. Nasze mieszkania to coś więcej – to przemyślane, precyzyjnie zaprojektowana przestrzeń, w której chce się żyć i przebywać na co dzień. Nasz doświadczony zespół zapewnia, że każdy krok realizacji inwestycji jest najwyższej jakości.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="mainContact">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-7"><div class="sep-hr"></div></div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="section-title">Chcesz być na bieżąco?</h3>
+                <p>Już teraz zapisz się ..... uspendisse quis ante sed sem tincidunt sollicitudin at sed arcu.</p>
+            </div>
+            <div class="col-12">
+                <div id="contact-form">
+                    <form class="container validateForm" method="post" action="">
+                        <div class="row">
+                            <?php if($this->message == 1) :?>
+                                <div id="formalert" class="col-12">
+                                    <div class="sendok"><p>Wiadomość została wysłana</p></div>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($this->message == 2) :?>
+                                <div id="formalert" class="col-12">
+                                    <div class="senderror"><p>Wystąpił błąd w formularzu.</p></div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col-12">
+                                <div class="form-input">
+                                    <label for="form-imie">Imię i Nazwisko *</label>
+                                    <input type="text" name="imie" id="form-imie" class="validate[required]" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-input">
+                                    <label for="form-phone">Telefon</label>
+                                    <input type="tel" name="telefon" id="form-phone" class="validate[custom[phone]]" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-input">
+                                    <label for="form-email">E-mail *</label>
+                                    <input type="email" name="email" id="form-email" class="validate[required,custom[email]]" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-input">
+                                    <label for="form-wiadomosc">Treść wiadomości *</label>
+                                    <textarea name="wiadomosc" cols="30" rows="10" id="form-wiadomosc" class="validate[required]" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 regulki">
+                                <?php foreach($this->rodo_rules as $r){?>
+                                    <div class="regulki">
+                                        <input
+                                                name="zgoda_<?=$r['id'];?>"
+                                                id="zgoda_<?=$r['id'];?>"
+                                                value="1"
+                                                type="checkbox"
+                                                <?php if($r['wymagane'] == 1){;?>class="validate[required]" required<?php } ?>
+                                                data-prompt-position="topLeft:0"
+                                        >
+                                        <label for="zgoda_<?=$r['id'];?>" class="rules-text text-justify"><?=$r['tresc'];?></label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center pt-4">
+                                <script type="text/javascript">
+                                    document.write("<button type=\"submit\" class=\"bttn bttn-lg mb-0\">WYŚLIJ WIADOMOŚĆ</button>");
+                                </script>
+                                <noscript><p><b>Do poprawnego działania, Java musi być włączona.</b><p></noscript>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

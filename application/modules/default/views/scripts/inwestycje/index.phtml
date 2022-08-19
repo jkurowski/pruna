@@ -1,0 +1,24 @@
+<div id="inwest-list">
+    <div class="container">
+        <?php foreach($this->inwestycje as $int => $i){?>
+        <div class="row inwest-item <?php echo fmod($int, 2) ? '' : 'flex-row-reverse' ?>">
+            <div class="col-7">
+                <div class="inwest-thumb">
+                    <a href="<?=$this->url(array('tag' => $i->slug), 'inwestycja-plan');?>">
+                        <div class="corner-holder">
+                            <img src="<?=$this->filesUrl(); ?>/inwestycje/miniaturka/<?=$i->plik_thumb;?>" alt="<?=$i->nazwa;?>" class="corner-radius">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-5 pl-5 d-flex align-items-center">
+                <div class="inwest-desc">
+                    <h2 class="underline"><?=$i->nazwa;?></h2>
+                    <p><?=$i->lista;?></p>
+                    <a href="<?=$this->url(array('tag' => $i->slug), 'inwestycja-plan');?>" class="bttn bttn-sm mb-0">ZOBACZ WIĘCEJ</a>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <?= $this->header['head']; ?>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title><?= $this->header['nazwa']; ?></title>
+    <meta name="description" content="<?= $this->header['opis']; ?>">
+    <meta name="keywords" content="<?= $this->header['klucze']; ?>">
+<?php if($this->header['autor']){?>
+	<meta name="author" content="<?= $this->header['autor']; ?>">
+<?php } ?>
+	<meta name="robots" content="<?= $this->header['robots']; ?>">
+
+    <link id="page_favicon" href="favicon.ico" rel="icon" type="image/x-icon" />
+
+<?php if($this->header['share_plik']) {?>
+	<meta property="og:title" content="<?=$this->header['share_tytul'];?>">
+	<meta property="og:image" content="<?= $this->header['domena']; ?>files/share/<?=$this->header['share_plik'];?>">
+	<meta property="og:description" content="<?=$this->header['share_opis'];?>">
+	<meta property="og:type" content="website">
+	<meta property="og:image:width" content="600">
+	<meta property="og:image:height" content="314">
+	<meta property="og:url" content="<?= $this->header['domena']; ?>">
+<?php } ?>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	<!-- .css files -->
+	<link rel="stylesheet" href="<?=$this->cssUrl();?>/bootstrap.css">
+	<link rel="stylesheet" href="<?=$this->cssUrl();?>/styles.min.css">
+</head>
+<body id="mainpage" class="<?php if(Zend_Auth::getInstance()->hasIdentity()) { ?> is-admin<?php } ?>">
+    <?= $this->header['afterbody']; ?>
+
+    <?=$this->render('partials/header.phtml');?>
+
+    <?= $this->layout()->content; ?>
+
+	<?=$this->render('partials/footer.phtml');?>
+
+	<!-- jQuery -->
+    <script src="<?=$this->jsUrl();?>/jquery.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl();?>/bootstrap.bundle.min.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl();?>/main.js" charset="utf-8"></script>
+
+    <script src="<?=$this->jsUrl();?>/imagemapster.js" charset="utf-8"></script>
+    <script src="<?=$this->jsUrl();?>/budynek.js" charset="utf-8"></script>
+    <script src="<?=$this->jsUrl();?>/pietro.js" charset="utf-8"></script>
+    <script src="<?=$this->jsUrl();?>/tip.js" charset="utf-8"></script>
+
+    <script src="<?=$this->jsUrl();?>/leaflet.js" charset="utf-8"></script>
+
+    <script src="<?=$this->jsUrl(); ?>/validation.js" charset="utf-8"></script>
+    <script src="<?=$this->jsUrl(); ?>/pl.js" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+        let map = L.map('mapHolder', {scrollWheelZoom: false}).setView([52.633917, 20.346750], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        const markerIcon = L.icon({
+            iconUrl: '<?=$this->gfxUrl();?>/marker.png',
+            iconAnchor: [86, 75],
+            iconSize: [173, 77]
+        });
+        L.marker([
+            '52.633917',
+            '20.346750'
+        ], {icon: markerIcon}).addTo(map);
+
+        $(".validateForm").validationEngine({
+            validateNonVisibleFields: true,
+            updatePromptsPosition:true,
+            promptPosition : "topRight:-128px"
+        });
+
+        <?php if($this->header['popup_status'] == 1){; ?>
+        <?php if($this->header['popup_tryb'] == 1){; ?>
+        $.cookie('popup', null);
+        $.magnificPopup.open({
+            items: {
+                src: '<div class="white-popup"><?= str_replace (array("\r\n", "\n", "\r"), ' ', $this->header["popup_tekst"]); ?></div>',
+                type: 'inline'
+            }
+        });
+        setTimeout( function(){
+            $.magnificPopup.close();
+        }, 5000 );
+        <?php } else {?>
+        if ($.cookie('popup') == null){
+            $.magnificPopup.open({
+                items: {
+                    src: '<div class="white-popup"><?= str_replace (array("\r\n", "\n", "\r"), ' ', $this->header["popup_tekst"]); ?></div>',
+                    type: 'inline'
+                }
+            });
+            setTimeout( function(){
+                $.magnificPopup.close();
+            }, 5000 );
+            $.cookie('popup','true');
+        }
+        <?php } ?>
+        <?php } else {?>
+        $.cookie('popup', null);
+        <?php } ?>
+	});
+
+    $(window).load(function() {
+        if(window.location.hash) {
+            const section = window.location.hash;
+            $('html, body').stop().animate({
+                scrollTop: $(section).offset().top - 80
+            }, 1500, 'easeInOutExpo');
+            window.location.hash = "";
+        }
+
+        <?php if($this->message == 1) {?>
+        const aboveHeight = $('#nav').outerHeight();
+        $('html, body').stop().animate({
+            scrollTop: $('#formalert').offset().top-aboveHeight
+        }, 1500, 'easeInOutExpo');
+        <?php } ?>
+    })
+	</script>
+
+	<?= $this->header['footer']; ?>
+
+    <?php if(Zend_Auth::getInstance()->hasIdentity()){?>
+        <?=$this->render('inline/inline.phtml') ?>
+    <?php } ?>
+</body>
+</html>

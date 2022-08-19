@@ -1,0 +1,77 @@
+<div class="invest-page">
+<?php if($this->plan->plik) { ?>
+    <div id="plan">
+        <div class="container p-0">
+            <div class="row no-gutters">
+                <div class="col-12 p-0">
+                    <div id="planImg"><img src="<?=$this->filesUrl(); ?>/inwestycje/plan/<?=$this->plan->plik;?>" alt="<?=$this->inwestycja->nazwa;?>" style="max-width:100%;height:auto;" id="myimagemap" usemap="#imagemap"></div>
+                    <map name="imagemap">
+                        <?php if($this->inwestycja->typ == 2) {
+                            foreach($this->pietra as $pietro) {
+                                if($this->pietro_stats)
+                                {
+                                    $floor_stats = '';
+                                    $status = ['1', '2', '3'];
+                                    foreach($status as $s) {
+                                        $floor_stats .= "<p class='floor-stats'>".$this->roomStatus($s).": <span>".substr_count($this->pietro_stats[$pietro->id], $s)."</span></p>";
+                                    }
+                                } else {
+                                    $floor_stats = '';
+                                }
+
+                                $floor =  str_replace('href=""','href="'.$this->url(array(
+                                        'tag' => $this->inwestycja->slug,
+                                        'numer' => $pietro->numer,
+                                        'typ' => $pietro->typ
+                                    ), 'inwestycja-pietro').'/" data-item="'.$pietro->id.'"', $pietro->html);
+                                $floor =  str_replace('shape="polygon"','shape="poly"', $floor);
+                                echo str_replace('alt=""','title="<h6>'.$pietro->nazwa.'</h6>'.$floor_stats.'" alt="pietro-'.$pietro->id.'" data-floornumber="'.$pietro->numer.'" data-floortype="'.$pietro->typ.'"', $floor);
+                            }
+                        } ?>
+                        <?php if($this->inwestycja->typ == 3) {
+                            foreach($this->powierzchnia as $mieszkania) {
+                                $html = $mieszkania->html;
+                                if($mieszkania->status <> 2) {
+                                    $mieszkanie = str_replace('href=""','href="'.$this->url(array('tag' => $this->inwestycja->slug, 'numer' => $mieszkania->numer), 'inwestycja-domek').'/" data-id="'.$mieszkania->id.'"', $html);
+                                } else {
+                                    $mieszkanie = str_replace('href=""','href="#"', $html);
+                                }
+
+                                $mieszkanie =  str_replace('shape="polygon"','shape="poly"', $mieszkanie);
+                                $mieszkanie = str_replace('alt=""','id="'.$mieszkania->id.'" alt="dom-'.$mieszkania->id.'" title="<b>'.$mieszkania->nazwa.'</b><br />powierzchnia: <b class=fr>'.$mieszkania->metry.' m<sup>2</sup></b><br />pokoje: <b class=fr>'.$mieszkania->pokoje.'</b><br />'.$this->roomStatus($mieszkania->status).'" data-color="plan-status-'.$mieszkania->status.'" class="inline plan-status-'.$mieszkania->status.'"', $mieszkanie);
+                                echo $mieszkanie;
+                            }
+                        } ?>
+                    </map>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php if($this->powierzchnia->count() > 0) {?>
+        <?= $this->partial('inwestycje/partials/list-search.phtml', array(
+            'inwestycja' => $this->inwestycja,
+            's_typ' => $this->s_typ,
+            's_pietro' => $this->s_pietro,
+            's_pokoje' => $this->s_pokoje,
+            's_metry' => $this->s_metry,
+            's_status' => $this->s_status,
+            's_aneks' => $this->s_aneks,
+            's_garden' => $this->s_garden,
+            's_deck' => $this->s_deck
+        ));?>
+
+        <?= $this->partial('inwestycje/partials/list-filtr.phtml', array(
+            's_room' => $this->s_room,
+            's_area' => $this->s_area,
+            'inwestycja' => $this->inwestycja
+        ));?>
+
+        <?= $this->partial('inwestycje/partials/list-list.phtml', array(
+            'powierzchnia' => $this->powierzchnia,
+            'inwestycja' => $this->inwestycja,
+            'lang' => $this->lang
+        ));?>
+    <?php } ?>
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 news-single-post">
+            <article id="post-<?=$this->news->id;?>" itemscope itemType="http://schema.org/BlogPosting">
+                <h1><span itemprop="name headline"><?=$this->news->tytul; ?></span></h1>
+                <p class="articleHeader text-justify mb-5"><b><?=$this->news->wprowadzenie; ?></b></p>
+                <?php if($this->news->plik){ ?>
+                    <div class="news-single-img mb-5">
+                        <div class="news-list-date d-flex align-items-center justify-content-center"><?=$this->news->data;?></div>
+                        <img src="<?=$this->filesUrl();?>/inwestycje/news/<?=$this->news->plik;?>" alt="<?=$this->news->tytul;?>" itemprop="image">
+                    </div>
+                <?php } ?>
+                <div itemprop="articleBody" class="text-justify">
+                    <?=parse($this->news->tekst); ?>
+
+                    <a href="<?=$this->url(array('language'=> $this->lang, 'tag' => $this->inwest_tag), 'dziennik');?>" class="bttn bttn-sm mb-0"><?=$this->translate('tl_back_to_newslist');?></a>
+                </div>
+
+                <meta itemprop="author" content="<?= $this->header['autor']; ?>">
+                <meta itemprop="publisher" content="<?= $this->header['autor']; ?>">
+                <meta itemprop="datePublished" content="<?=$this->news->data;?>">
+            </article>
+        </div>
+    </div>
+</div>

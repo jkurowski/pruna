@@ -1,0 +1,69 @@
+<div id="contact-form">
+    <form class="container validateForm" method="post" action="">
+        <div class="row">
+            <?php if($this->message == 1) :?>
+                <div id="formalert" class="col-12">
+                    <div class="sendok mb-4"><p>Wiadomość została wysłana</p></div>
+                </div>
+            <?php endif; ?>
+            <?php if($this->message == 2) :?>
+                <div id="formalert" class="col-12">
+                    <div class="senderror mb-4"><p>Wystąpił błąd w formularzu.</p></div>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="form-input">
+                    <label for="form-imie">Imię *</label>
+                    <input type="text" name="imie" id="form-imie" class="validate[required]" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="form-input">
+                    <label for="form-email">E-mail *</label>
+                    <input type="email" name="email" id="form-email" class="validate[required,custom[email]]" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="form-input">
+                    <label for="form-phone">Telefon</label>
+                    <input type="tel" name="telefon" id="form-phone" class="">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-input">
+                    <label for="form-wiadomosc">Treść wiadomości *</label>
+                    <textarea name="wiadomosc" cols="30" rows="10" id="form-wiadomosc" class="validate[required]" required></textarea>
+                </div>
+            </div>
+            <div class="col-12 obowiazek text-justify pt-3">
+                <?php if($this->rodo) { echo $this->rodo['obowiazek']; } ?>
+            </div>
+
+            <div class="col-12 regulki">
+                <?php foreach($this->rodo_rules as $r){?>
+                    <div class="regulki">
+                        <input
+                                name="zgoda_<?=$r['id'];?>"
+                                id="zgoda_<?=$r['id'];?>"
+                                value="1"
+                                type="checkbox"
+                                <?php if($r['wymagane'] == 1){;?>class="validate[required]" required<?php } ?>
+                                data-prompt-position="topLeft:0"
+                        >
+                        <label for="zgoda_<?=$r['id'];?>" class="rules-text text-justify"><?=$r['tresc'];?></label>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center pt-4">
+                <script type="text/javascript">
+                    document.write("<button type=\"submit\" class=\"bttn bttn-lg mb-0\">WYŚLIJ WIADOMOŚĆ</button>");
+                </script>
+                <noscript><p><b>Do poprawnego działania, Java musi być włączona.</b><p></noscript>
+            </div>
+        </div>
+    </form>
+</div>

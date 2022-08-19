@@ -1,0 +1,104 @@
+<div class="invest-page">
+    <div class="container p-0">
+        <?php if($this->inwestycja->typ == 2){?>
+            <div class="row row-plan-nav">
+                <div class="col-12 col-sm-4">
+                    <?php if ($this->prev_pietro) {?>
+                        <?php if ($this->prev_pietro->numer || $this->prev_pietro->numer == '0') {?>
+                            <a href="<?=$this->url(array(
+                                'tag' => $this->inwestycja->slug,
+                                'numer' => $this->prev_pietro->numer,
+                                'typ' => $this->prev_pietro->typ
+                            ), 'inwestycja-pietro');?>" class="bttn bttn-sm">Piętro niżej</a>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+                <div class="col-12 col-sm-4 text-center">
+                    <a href="<?=$this->url(array(
+                        'tag' => $this->inwestycja->slug
+                    ), 'inwestycja-plan');?>" class="bttn bttn-center bttn-sm">Plan inwestycji</a>
+                </div>
+                <div class="col-12 col-sm-4 text-right">
+                    <?php if ($this->next_pietro) {?>
+                        <?php if ($this->next_pietro->numer || $this->next_pietro->numer == '0') {?>
+                            <a href="<?=$this->url(array(
+                                'tag' => $this->inwestycja->slug,
+                                'numer' => $this->next_pietro->numer,
+                                'typ' => $this->next_pietro->typ
+                            ), 'inwestycja-pietro');?>" class="bttn bttn-sm">Piętro wyżej</a>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+
+    <div id="plan">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div id="planImg"><img src="<?=$this->filesUrl(); ?>/inwestycje/pietro/<?=$this->pietro->plik;?>" alt="<?=$this->inwestycja->nazwa;?> - <?=$this->pietro->nazwa;?>" style="max-width:100%;height:auto;" id="myimagemap" usemap="#imagemap"></div>
+                    <map name="imagemap">
+                        <?php foreach($this->powierzchnia as $mieszkania) {
+
+                            if($mieszkania->status <> 2 && $mieszkania->typ <> 4 && $mieszkania->typ <> 3) {
+                                $mieszkanie = str_replace('href=""', 'href="' . $this->url(array(
+                                        'tag' => $this->inwestycja->slug,
+                                        'pietro' => $mieszkania->numer_pietro,
+                                        'numer' => $mieszkania->numer
+                                    ), 'inwestycja-mieszkanie') . '" data-id="' . $mieszkania->id . '"', $mieszkania->html);
+                            } else {
+                                $mieszkanie = str_replace('href=""','href="#"', $mieszkania->html);
+                            }
+
+                            $mieszkanie =  str_replace('shape="polygon"','shape="poly"', $mieszkanie);
+
+                            if($mieszkania->typ == 4){
+                                $mieszkanie = str_replace('alt=""','id="'.$mieszkania->id.'" alt="dom-'.$mieszkania->id.'" title="<h6>'.$mieszkania->nazwa.'</h6>'.$this->roomStatus($mieszkania->status).'" data-color="plan-status-'.$mieszkania->status.'" class="inline plan-status-'.$mieszkania->status.'"', $mieszkanie);
+                            } else {
+
+                                if($mieszkania->cena && $mieszkania->status == 1) {
+                                    $cena = '<br /><br /><b>'.$mieszkania->cena.'</b> <span style=font-size:10px>(netto + 23% VAT)</span>';
+                                } else {
+                                    $cena ='';
+                                }
+
+
+                                $mieszkanie = str_replace('alt=""','id="'.$mieszkania->id.'" alt="dom-'.$mieszkania->id.'" title="<h6>'.$mieszkania->nazwa.'</h6>powierzchnia: <b class=float-right>'.$mieszkania->metry.' m<sup>2</sup></b><br />pokoje: <b class=float-right>'.$mieszkania->pokoje.'</b>'.$cena.'<hr>'.$this->roomStatus($mieszkania->status).'" data-color="plan-status-'.$mieszkania->status.'" class="inline plan-status-'.$mieszkania->status.'"', $mieszkanie);
+                            }
+
+                            echo $mieszkanie;
+                        } ?>
+                    </map>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php if($this->pietro->typ == 1) {?>
+        <?= $this->partial('inwestycje/partials/list-search.phtml', array(
+            'inwestycja' => $this->inwestycja,
+            'pietro' => $this->pietro,
+            's_pokoje' =>   $this->s_pokoje,
+            's_metry' =>    $this->s_metry,
+            's_status' => $this->s_status,
+            's_aneks' => $this->s_aneks,
+            's_garden' => $this->s_garden,
+            's_deck' => $this->s_deck
+        ));?>
+    <?php } ?>
+    <?php if($this->pietro->typ <> 4 && $this->pietro->typ <> 3) {?>
+        <?= $this->partial('inwestycje/partials/list-filtr.phtml', array(
+            's_room' => $this->s_room,
+            's_area' => $this->s_area,
+            'inwestycja' => $this->inwestycja
+        ));?>
+
+        <?= $this->partial('inwestycje/partials/list-list.phtml', array(
+            'powierzchnia' => $this->powierzchnia,
+            'inwestycja' => $this->inwestycja,
+            'pietro' => $this->pietro,
+            'lang' => $this->lang
+        ));?>
+    <?php } ?>
+</div>

@@ -1,0 +1,49 @@
+<div id="page-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-unstyled mb-0 row d-flex justify-content-center">
+                    <li><a href="<?=$this->url(array('language'=> $this->lang, 'tag' => $this->inwestycja->slug), 'inwestycja');?>"><?=$this->translate('tl_opis_inwestycji');?></a></li>
+                    <li><a href="<?=$this->url(array('language'=> $this->lang, 'tag' => $this->inwestycja->slug), 'inwestycja-plan');?>"><?=$this->translate('tl_plan_inwestycji');?></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dziennik" class="container mt-3">
+    <div class="news-columns">
+        <div class="row">
+            <?php foreach($this->news as $int => $n){?>
+                <div class="col-12 col-md-6">
+                    <div class="row row-news image-hover">
+                        <div class="col-12 news-list-img">
+                            <div class="news-list-date d-flex align-items-center justify-content-center"><?=$n->data;?></div>
+                            <a href="<?=$this->url(array('language'=> $this->lang, 'tag' => $this->inwest_tag, 'slug' => $n->tag), 'dziennik-show');?>" class="image">
+                                <img src="<?=$this->filesUrl();?>/inwestycje/news/thumbs/<?=$n->plik;?>" alt="<?=$n->tytul;?>">
+                            </a>
+                        </div>
+                        <div class="col-12 news-list-text p-4">
+                            <h2>
+                                <a href="<?=$this->url(array('language'=> $this->lang, 'tag' => $this->inwest_tag, 'slug' => $n->tag), 'dziennik-show');?>">
+                                    <?php echo (isset($n->tytul)) ? $n->tytul : json_decode($n->json)->tytul;?>
+                                </a>
+                            </h2>
+                            <p class="text-justify">
+                                <?php echo previewParser((isset($n->wprowadzenie)) ? $n->wprowadzenie : json_decode($n->json)->wprowadzenie, 300);?>
+                            </p>
+                            <div class="d-flex justify-content-end">
+                                <a class="bttn bttn-sm mb-0" href="<?=$this->url(array('language'=> $this->lang, 'tag' => $this->inwest_tag, 'slug' => $n->tag), 'dziennik-show');?>" title="<?php echo (isset($n->tytul)) ? $n->tytul : json_decode($n->json)->tytul;?>"><?=$this->translate('tl_readmore');?></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <?= $this->paginationControl($this->news, 'Sliding', 'pagination.phtml'); ?>
+        </div>
+    </div>
+</div>

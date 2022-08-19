@@ -1,0 +1,21 @@
+<div class="container container-floor">
+    <div class="lista-toggle clearfix">
+        <select id="areaControl">
+            <option value="">Sortuj wg. powierzchni</option>
+            <option value="desc"<?php if($this->s_area && $this->s_area == 'desc'){?> selected<?php } ?>>Malejąco</option>
+            <option value="asc"<?php if($this->s_area && $this->s_area == 'asc'){?> selected<?php } ?>>Rosnąco</option>
+        </select>
+
+        <?php if($this->inwestycja->typ <> 3) { ?>
+        <select id="roomControl">
+            <option value="">Sortuj wg. pokoi</option>
+            <option value="desc"<?php if($this->s_room && $this->s_room == 'desc'){?> selected<?php } ?>>Malejąco</option>
+            <option value="asc"<?php if($this->s_room && $this->s_room == 'asc'){?> selected<?php } ?>>Rosnąco</option>
+        </select>
+        <?php } ?>
+        <div class="view">
+            <span id="grid">Widok siatki</span>
+            <span id="list">Widok listy</span>
+        </div>
+    </div>
+</div>

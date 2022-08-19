@@ -1,0 +1,45 @@
+<div class="title"><h1><?=$this->controlname;?></h1></div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget">
+			<div class="table-header"><form action="" id="filter-form">
+			</form></div>
+			<table width="100%" cellspacing="0" cellpadding="0" class="adm" id="sortable">
+				<thead>
+					<tr>
+						<th width="5%" style="text-align:center">ID</th>
+						<th width="5%" style="text-align:center">Pozycja</th>
+						<th width="5%" style="text-align:center">Status</th>
+						<th width="75%">Nazwa</th>
+						<th width="10%"></th>
+						</tr>
+				</thead>
+				<tbody class="content">
+					<?php foreach($this->katalog as $k) : ?>
+					<tr id="recordsArray_<?= $this->escape($k->id);?>">
+					<td class="center"><?= $this->escape($k->id);?></td>
+					<td><?= $this->escape($k->sort);?></td>
+					<td><?= status($k->status);?></td>
+					<td><a href="<?=$this->baseUrl();?>/admin/galeria/show/id/<?= $this->escape($k->id);?>/"><?= $this->escape($k->nazwa);?></a></td>
+					<td class="right">
+					<a href="<?=$this->baseUrl();?>/admin/galeria/show/id/<?= $this->escape($k->id);?>/" class="actionBtn tip btnCatalog" title="Pokaż katalog" data-placement="top-right"></a>
+					<a href="<?=$this->baseUrl();?>/admin/galeria/edit/id/<?= $this->escape($k->id);?>/" class="actionBtn tip btnEdit" title="Edytuj katalog" data-placement="top-right"></a>
+                        <?php if($k->id != 1) {?>
+					<a href="<?=$this->baseUrl();?>/admin/galeria/delete/id/<?= $this->escape($k->id);?>/" class="actionBtn tip btnDelete confirm" title="Usuń katalog" data-placement="top-right"></a>
+                        <?php } ?>
+					</td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+			<div class="table-footer">
+				<a href="<?=$this->baseUrl();?>/admin/galeria/add/" class="button greyishBtn">Nowa galeria</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".content").sortuj('<?=$this->baseUrl();?>/admin/galeria/sort/co/galeria/');
+    });
+</script>

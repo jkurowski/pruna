@@ -1,0 +1,39 @@
+<div class="title"><h1><?=$this->controlname;?></h1></div>
+<div class="row-fluid">
+	<div class="span12">
+		<ul class="nav-tabs none">
+			<li class="active"><a href="<?=$this->baseUrl();?>/admin/statystyki/"><span class="fa i-stat"></span>Statystyki</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/statystyki/formularze/"><span class="fa i-stat"></span>Statystyki formularzy</a></li></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/statystyki/mieszkania/"><span class="fa i-stat"></span>Statystyki mieszkań</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/statystyki/kontakt/"><span class="fa i-lista"></span>Formularz kontaktowy</a></li>
+		</ul>
+		<div class="widget">
+			<div class="table-header">
+				<form action="" id="date-form" method="get">
+					<label>
+						<select name="id_inwest">
+							<option value="">Wszystkie</option>
+							<?php foreach($this->inwestlista as $inwest){?>
+							<option value="<?=$inwest->id;?>"<?php if($this->etap == $inwest->id){?> selected<?php } ?>><?=$inwest->nazwa;?></option>
+							<?php } ?>
+						</select>
+					</label>
+					<label><input type="submit" class="greyishBtn" value="Pokaz"></label>
+				<div class="clr"></div>
+				</form>
+			</div>
+			<div class="col-2">
+				<div class="panel-heading">
+					<h6 class="panel-title">Statusy mieszkań</h6>
+				</div>
+				<div class="panel-body">
+				<ul>
+					<li>Dostępne: <b><?=$this->dostepne;?></b></li>
+					<li>Sprzedane: <b><?=$this->sprzedane;?></b></li>
+					<li>Rezerwacja: <b><?=$this->rezerwacja;?></b></li>
+				</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

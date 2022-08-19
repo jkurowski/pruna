@@ -1,0 +1,93 @@
+<div id="offerListSpinner" class="d-flex justify-content-center">
+    <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id="offerList" class="container container-floor">
+    <div class="row">
+        <?php if(count($this->powierzchnia) == 0){?>
+            <div class="col-12 text-center">
+                <p class="p-4">
+                    <?=$this->translate('tl_brakwynikow');?>
+                </p>
+            </div>
+        <?php } else { ?>
+
+            <?php foreach($this->inwestycje as $inwestycja){?>
+                <div class="inwest-storelist-header">
+                    <?php if($inwestycja->plik_header){?><img src="<?=$this->filesUrl(); ?>/inwestycje/header/<?=$inwestycja->plik_header;?>" alt="<?=$inwestycja->nazwa;?>"><?php } ?>
+                    <h2><?=$inwestycja->nazwa;?></h2>
+                </div>
+
+                <?php foreach($this->powierzchnia as $powierzchnia){ if ($powierzchnia->id_inwest == $inwestycja->id) {?>
+                    <div class="col-12 col-list <?=$this->roomStatusTag($powierzchnia->status);?>-list"
+                        <?php if($powierzchnia->id_budynek) {?>
+                            data-url="<?=$this->url(array(
+                                'language'=> $this->lang,
+                                'tag' => $inwestycja->slug,
+                                'budynek' => $powierzchnia->id_budynek,
+                                'pietro' => $powierzchnia->numer_pietro,
+                                'numer' => $powierzchnia->numer
+                            ), 'inwestycja-budynek-mieszkanie');?>"
+                        <?php } else {?>
+                            data-url="<?=$this->url(array(
+                                'language'=> $this->lang,
+                                'tag' => $inwestycja->slug,
+                                'pietro' => $powierzchnia->numer_pietro,
+                                'numer' => $powierzchnia->numer
+                            ), 'inwestycja-mieszkanie');?>"
+                        <?php } ?>
+                    >
+                        <div class="row">
+                            <div class="row-item d-flex align-items-center">
+                                <div class="col">
+                                    <span><?=($powierzchnia->nazwa_lista) ? $powierzchnia->nazwa_lista : 'Mieszkanie';?></span>
+                                    <h2><?=$powierzchnia->numer;?></h2>
+                                </div>
+                                <div class="col">
+                                    <div class="col-list-img <?php if(!$powierzchnia->plik){?>animate-bg<?php } ?>">
+                                        <?php if($powierzchnia->plik){?>
+                                            <img src="<?=$this->filesUrl(); ?>/inwestycje/pomieszczenie/lista/<?=$powierzchnia->plik;?>" alt="<?=$powierzchnia->nazwa;?>">
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <ul class="list-unstyled biglist mb-0">
+                                        <li><?php $this->translate('tl_label_powierzchnia');?>:
+                                            <span>
+                                            <?=$powierzchnia->metry;?>&nbsp; m<sup>2</sup>
+                                        </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="<?=$this->roomStatusTag($powierzchnia->status);?>-ap">
+                                        <?=$this->roomStatus($powierzchnia->status);?>
+                                    </div>
+                                </div>
+                                <div class="col text-right">
+                                    <?php if($powierzchnia->id_budynek) {?>
+                                        <a href="<?=$this->url(array(
+                                            'language'=> $this->lang,
+                                            'tag' => $inwestycja->slug,
+                                            'budynek' => $powierzchnia->id_budynek,
+                                            'pietro' => $powierzchnia->numer_pietro,
+                                            'numer' => $powierzchnia->numer
+                                        ), 'inwestycja-budynek-mieszkanie');?>" class="bttn bttn-sm"><?=$this->translate('tl_zobacz');?> <i class="las la-arrow-right"></i></a>
+                                    <?php } else {?>
+                                        <a href="<?=$this->url(array(
+                                            'language'=> $this->lang,
+                                            'tag' => $inwestycja->slug,
+                                            'pietro' => $powierzchnia->numer_pietro,
+                                            'numer' => $powierzchnia->numer
+                                        ), 'inwestycja-mieszkanie');?>" class="bttn bttn-sm"><?=$this->translate('tl_zobacz');?> <i class="las la-arrow-right"></i></a>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } } ?>
+            <?php } ?>
+        <?php } ?>
+    </div>
+</div>

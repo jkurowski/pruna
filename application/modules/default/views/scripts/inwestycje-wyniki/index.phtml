@@ -1,0 +1,116 @@
+<div id="plansearch">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-12-rwd">
+                <form id="searchOffer" method="get" action="" class="container pt-0">
+                    <div class="row row-tab">
+                        <div class="col-12">
+                            <div class="row m-0 no-gutters">
+                                <?php foreach($this->miasta as $miasto) {?>
+                                    <div class="col-6 col-md-4 col-lg-2 pr-1">
+                                        <input type="radio" name="s_city" id="s_miasto_<?=$miasto['id'];?>" value="<?=$miasto['id'];?>"<?php if($this->s_city == $miasto['id']){?> checked<?php } ?>>
+                                        <label for="s_miasto_<?=$miasto['id'];?>"><?=$miasto['nazwa'];?></label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <label for="s_pokoje">Nazwa inwestycji</label>
+                            <select name="s_inwest" id="s_inwest">
+                                <option value=""><?=$this->translate('tl_option_wszystkie');?></option>
+                                <?php foreach($this->inwestycje as $i){?>
+                                    <option value="<?=$i->id;?>"<?php if($this->s_inwest == $i->id){echo ' selected="selected"';};?>><?=$i->nazwa;?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <label for="s_typ"><?=$this->translate('tl_label_typ_lokalu');?></label>
+                            <select name="s_typ" id="s_typ">
+                                <option value=""><?=$this->translate('tl_option_wszystkie');?></option>
+                                <option value="1"<?php if($this->s_typ && $this->s_typ == 1){echo ' selected="selected"';};?>><?=$this->translate('tl_option_mieszkanie');?></option>
+                                <option value="2"<?php if($this->s_typ && $this->s_typ == 2){echo ' selected="selected"';};?>><?=$this->translate('tl_option_lokal_uslugowy');?></option>
+                            </select>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <label for="s_status">Status lokalu</label>
+                            <select name="s_status" id="s_status">
+                                <option value=""><?=$this->translate('tl_option_wszystkie');?></option>
+								<option value="1"<?php if($this->s_status && $this->s_status == 1){echo ' selected="selected"';};?>><?=$this->translate('tl_option_dostepne');?></option>
+								<option value="2"<?php if($this->s_status && $this->s_status == 2){echo ' selected="selected"';};?>><?=$this->translate('tl_option_sprzedane');?></option>
+								<option value="3"<?php if($this->s_status && $this->s_status == 3){echo ' selected="selected"';};?>><?=$this->translate('tl_option_rezerwacja');?></option>
+                            </select>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <label for="s_pokoje"><?=$this->translate('tl_label_pokoje');?></label>
+                            <select name="s_pokoje" id="s_pokoje">
+                                <option value=""><?=$this->translate('tl_option_dowolnailosc');?></option>
+                                <option value="1"<?php if($this->s_pokoje && $this->s_pokoje == 1){echo ' selected="selected"';};?>>1 pokój</option>
+                                <option value="2"<?php if($this->s_pokoje && $this->s_pokoje == 2){echo ' selected="selected"';};?>>2 pokoje</option>
+                                <option value="3"<?php if($this->s_pokoje && $this->s_pokoje == 3){echo ' selected="selected"';};?>>3 pokoje</option>
+                                <option value="4"<?php if($this->s_pokoje && $this->s_pokoje == 4){echo ' selected="selected"';};?>>4 pokoje</option>
+                                <option value="5"<?php if($this->s_pokoje && $this->s_pokoje == 5){echo ' selected="selected"';};?>>5 pokoi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2">
+                        <div class="col-6 col-md-3">
+                            <label for="s_metry"><?=$this->translate('tl_label_powierzchnia');?></label>
+                            <select name="s_metry" id="s_metry">
+                                <option value=""><?=$this->translate('tl_option_dowolnymetraz');?></option>
+                                <option value="30-50"<?php if($this->s_metry && $this->s_metry == '30-50'){echo ' selected="selected"';};?>>30 - 50 m²</option>
+                                <option value="51-70"<?php if($this->s_metry && $this->s_metry == '51-70'){echo ' selected="selected"';};?>>51 - 70 m²</option>
+                                <option value="71-90"<?php if($this->s_metry && $this->s_metry == '71-90'){echo ' selected="selected"';};?>>71 - 90 m²</option>
+                                <option value="91-110"<?php if($this->s_metry && $this->s_metry == '91-110'){echo ' selected="selected"';};?>>91 - 110 m²</option>
+                                <option value="111-140"<?php if($this->s_metry && $this->s_metry == '111-140'){echo ' selected="selected"';};?>>111 - 140 m²</option>
+                            </select>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <label for="s_aneks"><?=$this->translate('tl_label_anekskuchnia');?></label>
+                            <select name="s_aneks" id="s_aneks">
+                                <option value=""><?=$this->translate('tl_option_wszystkie');?></option>
+                                <option value="1"<?php if($this->s_aneks && $this->s_aneks == 1){echo ' selected="selected"';};?>><?=$this->translate('tl_option_kuchnia');?></option>
+                                <option value="2"<?php if($this->s_aneks && $this->s_aneks == 2){echo ' selected="selected"';};?>><?=$this->translate('tl_option_aneks');?></option>
+                            </select>
+                        </div>
+
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <label for="s_garden"><?=$this->translate('tl_label_ogrodek');?></label>
+                            <select name="s_garden" id="s_garden">
+                                <option value="0"><?=$this->translate('tl_option_nie');?></option>
+                                <option value="1"<?php if($this->s_garden && $this->s_garden == 1){echo ' selected="selected"';};?>><?=$this->translate('tl_option_tak');?></option>
+                            </select>
+                        </div>
+
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <label for="s_deck"><?=$this->translate('tl_label_taras');?></label>
+                            <select name="s_deck" id="s_deck">
+                                <option value="0"><?=$this->translate('tl_option_nie');?></option>
+                                <option value="1"<?php if($this->s_deck && $this->s_deck == 1){echo ' selected="selected"';};?>><?=$this->translate('tl_option_tak');?></option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-lg-2">
+                            <label for="s_button" class="empty-label">&nbsp;</label>
+                            <input type="hidden" name="a" value="szukaj">
+                            <button type="submit" id="s_button" class="bttn"><?=$this->translate('tl_button_szukaj');?> <i class="las la-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?= $this->partial('inwestycje/partials/list-result.phtml', array(
+    'powierzchnia' => $this->powierzchnia,
+    'inwestycje' => $this->inwestycje,
+    'lang' => $this->lang
+));?>
+

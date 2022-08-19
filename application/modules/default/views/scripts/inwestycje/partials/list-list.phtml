@@ -1,0 +1,109 @@
+<div id="offerListSpinner" class="d-flex justify-content-center pt-5">
+    <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id="offerList" class="container container-floor">
+    <div class="row">
+        <?php if(count($this->powierzchnia) == 0){?>
+            <div class="col-12 text-center">
+                <p class="p-4">
+                    Brak wyników wyszukiwania
+                </p>
+            </div>
+        <?php } else { ?>
+            <?php foreach($this->powierzchnia as $powierzchnia){?>
+                <div class="col-12 col-list <?=$this->roomStatusTag($powierzchnia->status);?>-list"
+
+                    <?php if($powierzchnia->typ <> 4 && $powierzchnia->typ <> 3 && $powierzchnia->status <> 2) {?>
+                        <?php if($this->inwestycja->typ == 2) {?>
+                            data-url="<?=$this->url(array(
+                                'tag' => $this->inwestycja->slug,
+                                'pietro' => $powierzchnia->numer_pietro,
+                                'numer' => $powierzchnia->numer
+                            ), 'inwestycja-mieszkanie');?>"
+                        <?php } ?>
+
+                        <?php if($this->inwestycja->typ == 3) {?>
+                            data-url="<?=$this->url(array(
+                                'tag' => $this->inwestycja->slug,
+                                'numer' => $powierzchnia->numer
+                            ), 'inwestycja-domek');?>"
+                        <?php } ?>
+                    <?php } ?>
+                >
+                    <div class="row">
+                    <div class="row-item d-flex align-items-center">
+                        <div class="col">
+                            <span><?=($powierzchnia->nazwa_lista) ? $powierzchnia->nazwa_lista : 'Mieszkanie';?></span>
+                            <h2><?=$powierzchnia->numer;?></h2>
+                        </div>
+                        <div class="col">
+                            <div class="col-list-img <?php if(!$powierzchnia->plik){?>animate-bg<?php } ?>">
+                                <?php if($powierzchnia->plik){?>
+                                    <img src="<?=$this->filesUrl(); ?>/inwestycje/pomieszczenie/lista/<?=$powierzchnia->plik;?>" alt="<?=$powierzchnia->nazwa;?>">
+                                <?php } ?>
+                                <?php if(!$powierzchnia->plik && $powierzchnia->typ == 4 || $powierzchnia->typ == 3) {?>
+                                    <img src="<?=$this->filesUrl(); ?>/inwestycje/pomieszczenie/lista/parking.png" alt="<?=$powierzchnia->nazwa;?>">
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="col">
+						<?php if($powierzchnia->typ <> 4 && $powierzchnia->typ <> 3) {?>
+                            <ul class="list-unstyled biglist mb-0">
+                                <?php if($powierzchnia->typ <> 2 && $powierzchnia->typ <> 4){?><li>pokoje: <span><?=$powierzchnia->pokoje;?></span></li><?php } ?>
+                                <li>pow.: <span><?=str_replace('.', ',', $powierzchnia->metry);?>&nbsp; m<sup>2</sup></span></li>
+                                <?php if($this->inwestycja->typ == 3) {?>
+                                    <?php if($powierzchnia->ogrodek) {?>
+                                    <li class="li-inwest-rwd">ogródek: <span><?=$powierzchnia->ogrodek;?>&nbsp; m<sup>2</sup></li>
+                                    <?php } ?>
+                                <?php } else {?>
+                                    <?php if($powierzchnia->typ <> 4){?>
+                                        <?php if($powierzchnia->numer_pietro == 0){?>
+                                            <li class="li-inwest-rwd">piętro: <span>parter</span></li>
+                                        <?php } else {?>
+                                            <li class="li-inwest-rwd">piętro: <span><?=$powierzchnia->numer_pietro;?></span></li>
+                                        <?php } ?>
+
+                                    <?php } ?>
+                                <?php } ?>
+                            </ul>
+						<?php } ?>
+                        </div>
+                        <div class="col text-center d-flex align-items-center">
+                            <div class="pl-3 pr-3 w-100">
+                                <div class="<?=$this->roomStatusTag($powierzchnia->status);?>-ap">
+                                    <?=$this->roomStatus($powierzchnia->status);?>
+                                </div>
+                                <?php if($powierzchnia->cena == '999999999999') {?>
+                                    <h6 class="price mb-0"><?=number_format($powierzchnia->cena , 0, ',', ' ');?> zł<?php if($powierzchnia->cena_netto) {?><span class="priceNetto">netto</span><?php } else { ?><br><span class="small">brutto (VAT 23%)</span><?php } ?></h6>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <?php if($powierzchnia->typ <> 4 && $powierzchnia->typ <> 3 && $powierzchnia->status <> 2) {?>
+                                <?php if($this->inwestycja->typ == 2) {?>
+                                    <a href="<?=$this->url(array(
+                                        'tag' => $this->inwestycja->slug,
+                                        'pietro' => $powierzchnia->numer_pietro,
+                                        'numer' => $powierzchnia->numer
+                                    ), 'inwestycja-mieszkanie');?>" class="bttn bttn-sm text-center">Zobacz</a>
+                                <?php } ?>
+
+                                <!-- Domki -->
+                                <?php if($this->inwestycja->typ == 3) {?>
+                                    <a href="<?=$this->url(array(
+                                        'tag' => $this->inwestycja->slug,
+                                        'numer' => $powierzchnia->numer
+                                    ), 'inwestycja-domek');?>"
+                                       class="bttn bttn-sm text-center">Zobacz</a>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+    </div>
+</div>

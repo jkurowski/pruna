@@ -1,0 +1,136 @@
+<div class="title"><h1><?=$this->inwestycja->nazwa;?> - <?= $this->pagename; ?></h1></div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget">
+		<div class="tab-content">
+            <?php if($this->inwestycja->typ == 1){?>
+                <div class="back"><a href="<?=$this->baseUrl();?>/admin/inwestycje-budynek-pietro/show/id/<?=$this->pietro->id;?>/i/<?=$this->inwestycja->id;?>/b/<?=$this->budynek->id;?>/">Wróć do listy</a></div>
+            <?php } ?>
+            <?php if($this->inwestycja->typ == 2){?>
+                <div class="back"><a href="<?=$this->baseUrl();?>/admin/inwestycje-pietro/show/id/<?=$this->pietro->id;?>/i/<?=$this->inwestycja->id;?>/">Wróć do listy</a></div>
+            <?php } ?>
+            <?php if($this->inwestycja->typ == 3){?>
+                <div class="back"><a href="<?=$this->baseUrl();?>/admin/inwestycje/show/id/<?=$this->inwestycja->id;?>/">Wróć do listy</a></div>
+            <?php } ?>
+            <div class="info">Aby przybliżyć obrazek użyj skrótu CTRL i +, aby oddalić CTRL i -, aby wyzerować przybliżenie CTRL i 0. Trzymając kursor na obrazku obiektu możesz przesuwać nim na boki używając rolki w myszce.</div>
+	<div class="mappa">
+		<div class="mappa-tool">
+			<div class="mappa-workspace">
+				<div id="overflow" style="overflow:auto;width:100%;">
+				<canvas class="mappa-canvas"></canvas>
+				</div>
+				<div class="mappa-toolbars">
+					<ul class="mappa-drawers none">
+						<li><input type="radio" name="tool" value="polygon" id="new" class="addPoint input_hidden"/><label for="new" class="actionBtn tip addPoint" title="Dodaj punkt">Dodaj punkt</label></li>
+					</ul>
+					<ul class="mappa-points none">
+						<li><input checked="checked" type="radio" name="tool" id="move" value="arrow" class="movePoint input_hidden"/><label for="move" class="actionBtn tip movePoint" title="Przesuń punkt">Przesuń / Zaznacz</label></li>
+						<li><input type="radio" name="tool" value="delete" id="delete" class="deletePoint input_hidden"/><label for="delete" class="actionBtn tip deletePoint" title="Usuń punkt">Usuń punkt</label></li>
+					</ul>
+					<ul class="mappa-list none"></ul>
+					<ul class="mappa-points none">
+						<li><a href="#" id="toggleparam" class="actionBtn tip toggleParam">Pokaż / ukryj parametry</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<?php echo $this->form ;?>
+	</div>
+		</div>
+		</div>
+	</div>
+</div>
+<script src="<?=$this->baseUrl();?>/public/js/plan/underscore.js"></script>
+<script src="<?=$this->baseUrl();?>/public/js/plan/backbone.js"></script>
+<script src="<?=$this->baseUrl();?>/public/js/plan/backbone-relational.js"></script>
+<script src="<?=$this->baseUrl();?>/public/js/plan/mappa-backbone.js"></script>
+<script type="text/javascript">
+    const map = {
+        "name":"imagemap",
+        "areas":[
+            <?php if($this->powierzchnia) { echo $this->powierzchnia->cords; } ?>
+        ]};
+    $(document).ready(function() {
+        const mapview = new MapView({el: '.mappa'}, map);
+        <?php if($this->inwestycja->typ == 3){?>
+        mapview.loadImage('<?=$this->baseUrl();?>/files/inwestycje/plan/<?=$this->plan->plik;?>');
+        <?php } else { ?>
+        mapview.loadImage('<?=$this->baseUrl();?>/files/inwestycje/pietro/<?=$this->pietro->plik;?>');
+        <?php } ?>
+
+        <?php if($this->powierzchnia && $this->powierzchnia->plik){?>
+        $('#uniform-obrazek').after($('<div id="previewfile"><p>Nazwa pliku: <?=$this->powierzchnia->plik;?></p><a href="<?=$this->baseUrl();?>/files/inwestycje/pomieszczenie/<?=$this->powierzchnia->plik;?>" class="swipebox"><img src="<?=$this->baseUrl();?>/files/inwestycje/pomieszczenie/thumbs/<?=$this->powierzchnia->plik;?>" alt="" style="width:300px"></a></div>'));
+        <?php } ?>
+
+        <?php if($this->powierzchnia && $this->powierzchnia->plik2){?>
+        $('#uniform-obrazek2').after($('<div id="previewfile"><p>Nazwa pliku: <?=$this->powierzchnia->plik;?></p><a href="<?=$this->baseUrl();?>/files/inwestycje/pomieszczenie/<?=$this->powierzchnia->plik2;?>" class="swipebox"><img src="<?=$this->baseUrl();?>/files/inwestycje/pomieszczenie/thumbs/<?=$this->powierzchnia->plik2;?>" alt="" style="width:300px"></a></div>'));
+        <?php } ?>
+
+        <?php if($this->powierzchnia && $this->powierzchnia->pdf){?>
+        $('#uniform-pdf').after($('<div id="previewfile"><p>Nazwa pliku: <?=$this->powierzchnia->pdf;?></p></div>'));
+        <?php } ?>
+    });
+</script>
+<?php if($this->tinymce) :?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            tinymce();
+            tinymce.create('tinymce.plugins.kCMSPlugin', {
+                createControl: function(n, cm) {
+                    switch (n) {
+                        case 'galleryList':
+                            const glb = cm.createListBox('galerie', {
+                                title: 'Wybierz galerię',
+                                onselect: function (v) {
+                                    tinymce.activeEditor.execCommand('mceInsertContent', false, '<p>[galeria=galeria]' + v + '[/galeria]</p>');
+                                }
+                            });
+
+                        <?php
+                            $db = Zend_Registry::get('db');
+                            $gallery_thumbs = $db->fetchAll($db->select()->from('galeria')->order('nazwa ASC'));
+                        foreach($gallery_thumbs as $g) {
+                        ?>
+                            glb.add('<?=$g->nazwa;?>', '<?=$g->id;?>');
+                        <?php } ?>
+                            return glb;
+
+                        case 'sliderList':
+                            const slb = cm.createListBox('slider', {
+                                title: 'Wybierz slider',
+                                onselect: function (v) {
+                                    tinymce.activeEditor.execCommand('mceInsertContent', false, '<p>[galeria=slider]' + v + '[/galeria]</p>');
+                                }
+                            });
+
+                        <?php
+                            $gallery_slider = $db->fetchAll($db->select()->from('galeria')->order('nazwa ASC'));
+                            foreach($gallery_slider as $g) {
+                        ?>
+                            slb.add('<?=$g->nazwa;?>', '<?=$g->id;?>');
+                        <?php } ?>
+                            return slb;
+
+                        case 'karuzelaList':
+                            const klb = cm.createListBox('karuzela', {
+                                title: 'Wybierz karuzele',
+                                onselect: function (v) {
+                                    tinymce.activeEditor.execCommand('mceInsertContent', false, '<p>[galeria=karuzela]' + v + '[/galeria]</p>');
+                                }
+                            });
+
+                        <?php
+                            $gallery_carousel = $db->fetchAll($db->select()->from('galeria')->order('nazwa ASC'));
+                            foreach($gallery_carousel as $g) {
+                        ?>
+                            klb.add('<?=$g->nazwa;?>', '<?=$g->id;?>');
+                        <?php } ?>
+                            return klb;
+                    }
+
+                    return null;
+                }
+            });
+            tinymce.PluginManager.add('kcmsplugin', tinymce.plugins.kCMSPlugin);
+        });</script>
+<?php endif; ?>

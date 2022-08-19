@@ -1,0 +1,96 @@
+<div class="invest-page">
+    <div class="container p-0">
+        <div class="row row-plan-nav no-gutters">
+            <div class="col-12 col-sm-4">
+                <?php if ($this->prev_budynek->numer) {?>
+                    <a href="<?=$this->url(array(
+                        'budynek' => $this->prev_budynek->id
+                    ), 'inwestycja-budynek');?>" class="bttn bttn-sm"><?=$this->prev_budynek->nazwa;?></a>
+                <?php } ?>
+            </div>
+            <div class="col-12 col-sm-4 text-center">
+                <a href="<?=$this->url(array(), 'inwestycja-plan');?>" class="bttn bttn-center bttn-sm">Plan inwestycji</a>
+            </div>
+            <div class="col-12 col-sm-4 text-right">
+                <?php if ($this->next_budynek->numer) {?>
+                    <a href="<?=$this->url(array(
+                        'language'=> $this->lang,
+                        'tag' => $this->inwestycja->slug,
+                        'budynek' => $this->next_budynek->id
+                    ), 'inwestycja-budynek');?>" class="bttn bttn-sm"><?=$this->next_budynek->nazwa;?></a>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+
+    <div id="plan">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 col-lg-2 p-0" style="background: #1b3142">
+                    <p class="info">Z planu lub listy wybierz piętro</p>
+                    <div id="selectFloor">
+                        <ul class="mb-0 list-unstyled floor-list">
+                            <?php foreach($this->pietra as $pietro) { ?>
+                                <li><a href="<?=$this->url(array(
+                                        'language'=> $this->lang,
+                                        'tag' => $this->inwestycja->slug,
+                                        'budynek' => $this->budynek->id,
+                                        'numer' => $pietro->numer,
+                                        'typ' => $pietro->typ
+                                    ), 'inwestycja-budynek-pietro');?>/" class="bttn border-bottom" data-tag="pietro-<?=$pietro->id;?>"><?=$pietro->nazwa;?></a></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-9 col-lg-10 p-0">
+                    <div id="planImg"><img src="<?=$this->filesUrl(); ?>/inwestycje/budynek/<?=$this->budynek->plik;?>" alt="<?=$this->budynek->nazwa;?>" style="max-width:100%;height:auto;" id="myimagemap" usemap="#imagemap"></div>
+                    <map name="imagemap">
+                        <?php foreach($this->pietra as $pietro) {
+                            $floor_stats = '';
+                            $status = ['1'];
+                            foreach($status as $s) {
+                                $floor_stats .= "<p class='floor-stats'>".$this->roomStatus($s).": <span>".substr_count($this->pietro_stats[$pietro->id], $s)."</span></p>";
+                            }
+
+                            $floor =  str_replace('href=""','href="'.$this->url(array(
+                                    'language'=> $this->lang,
+                                    'tag' => $this->inwestycja->slug,
+                                    'budynek' => $this->budynek->id,
+                                    'numer' => $pietro->numer,
+                                    'typ' => $pietro->typ
+                                ), 'inwestycja-budynek-pietro').'/" data-item="'.$pietro->id.'"', $pietro->html);
+                            $floor =  str_replace('shape="polygon"','shape="poly"', $floor);
+                            echo str_replace('alt=""','title="<h6>'.$pietro->nazwa.'</h6>'.$floor_stats.'" alt="pietro-'.$pietro->id.'" data-floornumber="'.$pietro->numer.'" data-floortype="'.$pietro->typ.'"', $floor);
+                        } ?>
+                    </map>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?= $this->partial('inwestycje/partials/list-search.phtml', array(
+        'inwestycja' => $this->inwestycja,
+        'pietro' => $this->pietro,
+        's_typ' => $this->s_typ,
+        's_pietro' => $this->s_pietro,
+        's_pokoje' => $this->s_pokoje,
+        's_metry' => $this->s_metry,
+        's_status' => $this->s_status,
+        's_aneks' => $this->s_aneks,
+        's_garden' => $this->s_garden,
+        's_deck' => $this->s_deck
+    ));?>
+
+    <?= $this->partial('inwestycje/partials/list-filtr.phtml', array(
+        's_room' => $this->s_room,
+        's_area' => $this->s_area,
+        'inwestycja' => $this->inwestycja
+    ));?>
+
+    <?= $this->partial('inwestycje/partials/list-list.phtml', array(
+        'powierzchnia' => $this->powierzchnia,
+        'inwestycja' => $this->inwestycja,
+        'pietro' => $this->pietro,
+        'lang' => $this->lang
+    ));?>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <?php foreach($this->galeries as $g) {?>
+        <div class="col-4">
+            <div class="gallery-catalog">
+                <div class="corner-holder">
+                    <a href="<?=$this->baseUrl;?>/galeria/<?=$g->slug;?>">
+                        <img src="<?=$this->filesUrl();?>/galeria/<?=$g->plik;?>" alt="<?=$g->nazwa;?>" class="corner-radius">
+                    </a>
+                </div>
+                <div class="text-center">
+                    <h2 class="underline"><?=$g->nazwa;?></h2>
+                    <a href="<?=$this->baseUrl;?>/galeria/<?=$g->slug;?>" class="bttn m-0">Zobacz galerię</a>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+</div>
