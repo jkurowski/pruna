@@ -18,8 +18,7 @@ class Mails_ContactSend extends Zend_Db_Table_Abstract
         $ipQuery = $this->_db_table->select()->from('blokowanie')->where('ip = ?', $remoteAddress);
         $ip = $this->_db_table->fetchRow($ipQuery);
 
-        if(!$ip) {
-
+        if(!$formData['nazwisko'] && !$ip) {
             if($formData['imie'] && $formData['email']) {
 
                 $name = $formData['imie'];
