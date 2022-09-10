@@ -3,7 +3,8 @@
         <div class="row no-gutters">
             <div class="col-7 d-flex justify-content-start align-items-center">
                 <div class="section-img">
-                    <img src="<?=$this->gfxUrl();?>/header-osiedle.jpg" alt="Wizualizacja osiedla" width="1120" height="1120">
+                    <img src="<?=$this->gfxUrl();?>/header-osiedle.jpg" class="header-sm" alt="Wizualizacja osiedla" width="1120" height="1120">
+                    <img src="<?=$this->gfxUrl();?>/header-osiedle-full.jpg" class="header-full" alt="Wizualizacja osiedla" width="1360" height="700">
                 </div>
             </div>
             <div class="col-5 d-flex align-items-center justify-content-start">
@@ -34,18 +35,19 @@
 
 <section id="mainLocationText">
     <div class="container-fluid p-0">
-        <div class="row no-gutters">
-            <div class="col-5 d-flex align-items-center justify-content-end">
+        <div class="row no-gutters flex-row-reverse">
+            <div class="col-12 col-lg-7 d-flex justify-content-end align-items-center">
+                <div class="section-img">
+                    <img src="<?=$this->gfxUrl();?>/lokalizacja-osiedle.jpg" alt="Wizualizacja osiedla" width="1120" class="d-none d-lg-block" height="1120">
+                    <img src="<?=$this->gfxUrl();?>/lokalizacja-osiedle-full.jpg" alt="Wizualizacja osiedla" class="d-block d-lg-none" width="991" height="600">
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 d-flex align-items-center justify-content-end">
                 <div class="section-apla-text section-apla-text-left">
                     <h2 class="section-title mb-5">Osiedle Sadyba <br><span>Na wyciągnięcie ręki</span></h2>
                     <p>Osiedle Sadyba położone jest w Płońsku między ulicami Szkolną i Spokojną, otoczone zielenią i zabudową jednorodzinną. Bliskość centrum miasta oraz dogodny dojazd do tras wyjazdowych z miasta potęguje wygodę i elastyczność życia.</p>
                     <p>&nbsp;</p>
                     <p>W pierwszej kolejności realizujemy 48 lokali (24 mieszkania i 24 segmenty), które wyróżniają się przemyślanymi i dopracowanymi rozkładami, wysoką jakością materiałów, miejscem relaksu w postaci własnego ogródka/ balkonu oraz wygodnymi dwoma miejscami parkingowymi.</p>
-                </div>
-            </div>
-            <div class="col-7 d-flex justify-content-end align-items-center">
-                <div class="section-img">
-                    <img src="<?=$this->gfxUrl();?>/lokalizacja-osiedle.jpg" alt="Wizualizacja osiedla" width="1120" height="1120">
                 </div>
             </div>
         </div>
@@ -62,11 +64,11 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <div class="col-7"><div class="sep-hr"></div></div>
+            <div class="col-12 col-lg-7"><div class="sep-hr"></div></div>
         </div>
         <div class="row d-flex justify-content-center">
             <?php foreach($this->photos as $photo) {?>
-                <div class="col-4">
+                <div class="col-6 col-sm-4">
                     <a href="<?=$this->filesUrl();?>/galeria/big/<?=$photo->plik;?>" class="swipebox"><img src="<?=$this->filesUrl();?>/galeria/thumbs/<?=$photo->plik;?>" alt="Wizualizacja inwestycji"></a>
                 </div>
             <?php } ?>
@@ -77,12 +79,13 @@
 <section id="mainInvestor">
     <div class="container-fluid p-0">
         <div class="row no-gutters">
-            <div class="col-7 d-flex justify-content-start align-items-center">
+            <div class="col-12 col-lg-7 d-flex justify-content-start align-items-center">
                 <div class="section-img">
-                    <img src="<?=$this->gfxUrl();?>/inwestor-osiedle.jpg" alt="Wizualizacja osiedla" width="1120" height="1120">
+                    <img src="<?=$this->gfxUrl();?>/inwestor-osiedle.jpg" alt="Wizualizacja osiedla" class="d-none d-lg-block" width="1120" height="1120">
+                    <img src="<?=$this->gfxUrl();?>/inwestor-osiedle-full.jpg" alt="Wizualizacja osiedla" class="d-block d-lg-none" width="991" height="600">
                 </div>
             </div>
-            <div class="col-5 d-flex align-items-center justify-content-start">
+            <div class="col-12 col-lg-5 d-flex align-items-center justify-content-start">
                 <div class="section-apla-text">
                     <h2 class="section-title mb-5">Klika słów <br><span>o deweloperze</span></h2>
                     <p>Osiedle Sadyba realizuje PRUNA DEVELOPMENT sp. z o.o. Nasze mieszkania to coś więcej – to przemyślane, precyzyjnie zaprojektowana przestrzeń, w której chce się żyć i przebywać na co dzień. Nasz doświadczony zespół zapewnia, że każdy krok realizacji inwestycji jest najwyższej jakości.</p>
@@ -95,7 +98,7 @@
 <section id="mainContact">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-7"><div class="sep-hr"></div></div>
+            <div class="col-12 col-lg-7"><div class="sep-hr"></div></div>
         </div>
         <div class="row">
             <div class="col-12 text-center">
@@ -103,7 +106,7 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <div class="col-7">
+            <div class="col-12 col-lg-7">
                 <div id="contact-form">
                     <form class="container validateForm" method="post" action="">
                         <div class="row">

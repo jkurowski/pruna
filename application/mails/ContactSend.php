@@ -44,14 +44,23 @@ class Mails_ContactSend extends Zend_Db_Table_Abstract
 
                 $mail = new Zend_Mail('UTF-8');
                 $mail
-                    ->setFrom($ustawienia->email, $name)
+                    ->setFrom($ustawienia->email, 'Osiedle Sadyba')
                     ->addTo($ustawienia->email, 'Adres odbiorcy')
                     ->setReplyTo($email, $name)
                     ->setSubject($ustawienia->domena.' - Zapytanie ze strony www - Kontakt');
                 $mail->setBodyHtml($view->render( 'kontakt.phtml'));
                 $mail->setBodyText($view->render( 'kontakt-txt.phtml'));
-
                 $mail->send();
+
+                // Podziekowanie
+                $mail2 = new Zend_Mail('UTF-8');
+                $mail2
+                    ->setFrom($ustawienia->email, 'Osiedle Sadyba')
+                    ->addTo($email, 'Adres odbiorcy')
+                    ->setSubject($ustawienia->domena.' - Dziękujemy za wiadomość');
+                $mail2->setBodyHtml($view->render( 'thanku.phtml'));
+                $mail2->setBodyText($view->render( 'thanku-txt.phtml'));
+                $mail2->send();
 
                 //Zapisz statystyki
                 $stat = array(
