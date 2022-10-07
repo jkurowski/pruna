@@ -7,18 +7,18 @@
                         <a href="<?=$this->url(array(
                             'tag' => $this->inwestycja->slug,
                             'numer' => $this->prev_mieszkanie->numer
-                        ), 'inwestycja-domek');?>" class="bttn bttn-sm"><i class="las la-arrow-left"></i> Poprzedni lokal</a>
+                        ), 'inwestycja-domek', null, false);?>" class="bttn bttn-gold bttn-sm pl-5 pr-5 mt-0 mb-4">Poprzednie mieszkanie</a>
                     <?php } ?>
                 </div>
                 <div class="col-12 col-sm-4 text-center">
-                    <a href="/#plan" class="bttn bttn-center bttn-sm">Plan inwestycji</a>
+                    <a href="<?=$this->url(array('invest_slug' => $this->inwestycja->slug), 'inwestycja-plan');?>" class="bttn bttn-gold bttn-center bttn-sm pl-5 pr-5 mt-0 mb-4">Plan inwestycji</a>
                 </div>
                 <div class="col-12 col-sm-4 text-right">
                     <?php if($this->next_mieszkanie && $this->next_mieszkanie->numer){?>
                         <a href="<?=$this->url(array(
                             'tag' => $this->inwestycja->slug,
                             'numer' => $this->next_mieszkanie->numer
-                        ), 'inwestycja-domek');?>" class="bttn bttn-sm">Następny lokal <i class="las la-arrow-right"></i></a>
+                        ), 'inwestycja-domek', null, false);?>" class="bttn bttn-gold bttn-sm pl-5 pr-5 mt-0 mb-4">Następne mieszkanie</i></a>
                     <?php } ?>
                 </div>
             </div>
@@ -26,11 +26,13 @@
 
         <div class="row row-mieszkanie">
             <div class="col-12 col-md-5">
-                <div class="mieszkanie-dane">
+                <div class="mieszkanie-dane mt-5 pt-5 position-relative">
                     <div class="<?=$this->roomStatusTag($this->mieszkanie->status);?>-ap mieszkanie-status">
                         <?=$this->roomStatus($this->mieszkanie->status);?>
                     </div>
-
+                    <?php if($this->mieszkanie->cena) {?>
+                        <h6 class="price"><?=number_format($this->mieszkanie->cena , 0, ',', ' ');?> zł</h6>
+                    <?php } ?>
                     <ul class="list-unstyled">
                         <li>Pokoje:<span><?=$this->mieszkanie->pokoje;?></span></li>
                         <li>Powierzchnia:<span><?=str_replace('.', '.', $this->mieszkanie->metry);?> m<sup>2</sup></span></li>
@@ -40,11 +42,24 @@
                         <?php if($this->mieszkanie->kuchnia){?>
                             <li>Aneks / kuchnia:<span><?=$this->roomKitchen($this->mieszkanie->kuchnia);?></span></li>
                         <?php } ?>
+
+                        <?php if($this->mieszkanie->ogrodek){?>
+                            <li>Ogródek:<span><?=$this->mieszkanie->ogrodek;?> m<sup>2</sup></span></li>
+                        <?php } ?>
+                        <?php if($this->mieszkanie->taras){?>
+                            <li>Taras:<span><?=$this->mieszkanie->taras;?> m<sup>2</sup></span></li>
+                        <?php } ?>
+                        <?php if($this->mieszkanie->balkon){?>
+                            <li>Balkon:<span><?=$this->mieszkanie->balkon;?> m<sup>2</sup></span></li>
+                        <?php } ?>
                     </ul>
                     <div class="container-fluid p-0">
                         <div class="row">
-                            <div class="col-12 text-center">
+                            <div class="col-6 text-center">
                                 <?php if($this->mieszkanie->pdf){?><a href="<?=$this->filesUrl(); ?>/inwestycje/pdf/<?=$this->mieszkanie->pdf;?>" title="Pobierz plan mieszkania" class="bttn text-left bttn-pdf mt-3 mt-md-4 mb-4 mb-md-0" target="_blank"><span>Pobierz plan</span></a><?php } ?>
+                            </div>
+                            <div class="col-6 text-center">
+                                <a href="<?=$this->filesUrl(); ?>/upload/standard_wykonania_sadyba.pdf" title="Standard wykonania" class="bttn text-left bttn-pdf mt-3 mt-md-4 mb-4 mb-md-0" target="_blank"><span>Standard wykonania</span></a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +67,7 @@
             </div>
             <div class="col-12 col-md-7">
                 <?php if($this->mieszkanie->plik){?>
-                    <div class="mieszkanie-rzut">
+                    <div class="mieszkanie-rzut d-flex justify-content-center">
                         <a href="<?=$this->filesUrl(); ?>/inwestycje/pomieszczenie/<?=$this->mieszkanie->plik;?>" title="<?=$this->mieszkanie->nazwa;?>"><img src="<?=$this->filesUrl(); ?>/inwestycje/pomieszczenie/<?=$this->mieszkanie->plik;?>" alt="<?=$this->mieszkanie->nazwa;?>"></a>
                     </div>
                 <?php } ?>

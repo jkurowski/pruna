@@ -1,45 +1,45 @@
 $(document).ready(function(){
-	$("#areaControl").on("change", function () {
-		var f = this.options[this.selectedIndex].value;
-		var e = Qurl.create();
-		e.query("s_area", f);
-		location.reload()
-	});
-	
-	$("#roomControl").on("change", function () {
-		var f = this.options[this.selectedIndex].value;
-		var e = Qurl.create();
-		e.query("s_room", f);
-		location.reload()
-	});
-	
-	$("#statusControl").on("change", function () {
-		var f = this.options[this.selectedIndex].value;
-		var e = Qurl.create();
-		e.query("s_status", f);
-		location.reload()
-	});
-
-    $(".floor-list a").hover(function() {
-        var e = $(this).attr("data-tag");
-		$("area[alt='"+ e +"']").mapster("set", true, {
-			fillColor: "f7b392",
-			fillOpacity: 0.8
-		})
-    }, function() {
-        $("area").mapster("set", false);
-    });
-
 	$('#myimagemap').mapster({
-		fillColor: 'f7b392',
+		onClick: function(g) {
+			if (this.href !== "#") {
+				window.open(this.href, "_self")
+			} else {
+				return false
+			}
+		},
 		fillOpacity: 0.8,
-		clickNavigate: true,
-		onMouseover: function(g) {
-			var f = $(this).attr("alt");
-			$(".floor-list a[data-tag='"+ f +"']").addClass('hoverlist');
+		onMouseover: function() {
+			console.log('onMouseover');
+			$(this).mapster("set", false);
+			$(this).mapster("set", true, {
+				fillColor: '3b3b3b',
+				fillOpacity: 0,
+				stroke: true,
+				strokeColor: 'a78a49',
+				strokeOpacity: 1,
+				strokeWidth: 2,
+			});
 		},
 		onMouseout: function(f) {
-			$(".floor-list a").removeClass('hoverlist');
+			console.log('onMouseout');
+			$(this).mapster("set", false);
+			$(this).mapster("set", true, {
+				fillColor: '3b3b3b',
+				fillOpacity: 0.7,
+				stroke: true,
+				strokeColor: 'a78a49',
+				strokeOpacity: 1,
+				strokeWidth: 2,
+			});
 		}
+	});
+
+	$("area").mapster("set", true, {
+		fillColor: '3b3b3b',
+		fillOpacity: 0.7,
+		stroke: true,
+		strokeColor: 'a78a49',
+		strokeOpacity: 1,
+		strokeWidth: 2,
 	});
 });

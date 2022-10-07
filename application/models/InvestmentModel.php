@@ -5,8 +5,8 @@ class Model_InvestmentModel  extends Zend_Db_Table_Abstract
     protected $_name = 'inwestycje';
     protected $_primary = 'id';
 
-    const LIST_WIDTH = 680;
-    const LIST_HEIGHT = 510;
+    const LIST_WIDTH = 900;
+    const LIST_HEIGHT = 506;
 
     const HEADER_WIDTH = 2560;
     const HEADER_HEIGHT = 460;
@@ -64,14 +64,14 @@ class Model_InvestmentModel  extends Zend_Db_Table_Abstract
         $filename = slugImg($title, $file['name']);
 
         if($delete) {
-            $investmentQuery = $this->_db_table->select()
+            $investmentQuery = $this->select()
                 ->from(array('n' => $this->_name),
                     array(
                         'id',
                         'plik_thumb',
                     ))
                 ->where('n.id =?', $id);
-            $investment = $this->_db_table->fetchRow($investmentQuery);
+            $investment = $this->fetchRow($investmentQuery);
             unlink(FILES_PATH . "/inwestycje/miniaturka/" . $investment->plik_thumb);
         }
 
@@ -88,7 +88,7 @@ class Model_InvestmentModel  extends Zend_Db_Table_Abstract
                 ->save($uploadfile);
 
             $data = array('plik_thumb' => $filename);
-            $this->_db_table->update('inwestycje', $data, 'id = '.$id);
+            $this->update($data, 'id = '.$id);
         }
     }
 

@@ -26,9 +26,9 @@
 
                         <?php if($this->inwestycja->typ == 3) {?>
                             data-url="<?=$this->url(array(
-                                'tag' => $this->inwestycja->slug,
+                                'invest_slug' => $this->inwestycja->slug,
                                 'numer' => $powierzchnia->numer
-                            ), 'inwestycja-domek');?>"
+                            ), 'inwestycja-domek', null, false);?>"
                         <?php } ?>
                     <?php } ?>
                 >
@@ -75,8 +75,8 @@
                                 <div class="<?=$this->roomStatusTag($powierzchnia->status);?>-ap">
                                     <?=$this->roomStatus($powierzchnia->status);?>
                                 </div>
-                                <?php if($powierzchnia->cena == '999999999999') {?>
-                                    <h6 class="price mb-0"><?=number_format($powierzchnia->cena , 0, ',', ' ');?> zł<?php if($powierzchnia->cena_netto) {?><span class="priceNetto">netto</span><?php } else { ?><br><span class="small">brutto (VAT 23%)</span><?php } ?></h6>
+                                <?php if($powierzchnia->cena) {?>
+                                    <h6 class="price mb-0"><?=number_format($powierzchnia->cena , 0, ',', ' ');?> zł</h6>
                                 <?php } ?>
                             </div>
                         </div>
@@ -93,9 +93,9 @@
                                 <!-- Domki -->
                                 <?php if($this->inwestycja->typ == 3) {?>
                                     <a href="<?=$this->url(array(
-                                        'tag' => $this->inwestycja->slug,
+                                        'invest_slug' => $this->inwestycja->slug,
                                         'numer' => $powierzchnia->numer
-                                    ), 'inwestycja-domek');?>"
+                                    ), 'inwestycja-domek', null, false);?>"
                                        class="bttn bttn-sm text-center">Zobacz</a>
                                 <?php } ?>
                             <?php } ?>

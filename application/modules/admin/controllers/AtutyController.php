@@ -2,7 +2,6 @@
 class Admin_AtutyController extends kCMS_Admin
 {
     private $redirect;
-    private $table;
     private $model;
     private $form;
 
@@ -13,7 +12,6 @@ class Admin_AtutyController extends kCMS_Admin
         $controlname = "Atuty inwestycji";
         $back = '<div class="back"><a href="'.$this->view->baseUrl().'/admin/atuty/">Wróć do listy</a></div>';
         $this->redirect = 'admin/atuty';
-        $this->table = 'atuty';
         $array = array(
             'controlname' => $controlname,
             'back' => $back
@@ -40,13 +38,12 @@ class Admin_AtutyController extends kCMS_Admin
         if ($this->_request->getPost()) {
 
             $formData = $this->_request->getPost();
-            unset($formData['MAX_FILE_SIZE']);
             unset($formData['submit']);
 
             if ($this->form->isValid($formData)) {
 
                 $this->model->insert($formData);
-                $this->_redirect($this->redirect);
+                $this->redirect($this->redirect);
             } else {
 
                 $array = array(
@@ -73,13 +70,12 @@ class Admin_AtutyController extends kCMS_Admin
         if ($this->_request->isPost()) {
 
             $formData = $this->_request->getPost();
-            unset($formData['MAX_FILE_SIZE']);
             unset($formData['submit']);
 
             if ($this->form->isValid($formData)) {
 
                 $this->model->update($formData, 'id = '.$id);
-                $this->_redirect($this->redirect);
+                $this->redirect($this->redirect);
             } else {
 
                 $array = array(
@@ -94,8 +90,7 @@ class Admin_AtutyController extends kCMS_Admin
         $id = (int)$this->_request->getParam('id');
         $entry = $this->model->find($id)->current();
         $entry->delete();
-
-        $this->_redirect($this->redirect);
+        $this->redirect($this->redirect);
     }
 
     function sortAction() {

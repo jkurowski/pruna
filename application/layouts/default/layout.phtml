@@ -47,11 +47,6 @@
 	<script src="<?=$this->jsUrl();?>/bootstrap.bundle.min.js" charset="utf-8"></script>
 	<script src="<?=$this->jsUrl();?>/main.js" charset="utf-8"></script>
 
-    <script src="<?=$this->jsUrl();?>/imagemapster.js" charset="utf-8"></script>
-    <script src="<?=$this->jsUrl();?>/budynek.js" charset="utf-8"></script>
-    <script src="<?=$this->jsUrl();?>/pietro.js" charset="utf-8"></script>
-    <script src="<?=$this->jsUrl();?>/tip.js" charset="utf-8"></script>
-
     <script src="<?=$this->jsUrl();?>/leaflet.js" charset="utf-8"></script>
 
     <script src="<?=$this->jsUrl(); ?>/validation.js" charset="utf-8"></script>
@@ -130,9 +125,5 @@
 	</script>
 
 	<?= $this->header['footer']; ?>
-
-    <?php if(Zend_Auth::getInstance()->hasIdentity()){?>
-        <?=$this->render('inline/inline.phtml') ?>
-    <?php } ?>
 </body>
 </html>

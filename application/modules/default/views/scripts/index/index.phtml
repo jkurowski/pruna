@@ -56,6 +56,20 @@
 
 <div id="mapHolder"></div>
 
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <?php foreach($this->atuty as $a) {?>
+            <div class="col-6 col-md-4 col-lg-3 pl-3 pl-sm-4 pl-xl-5">
+                <div class="location-box-small">
+                    <div class="location-box-icon"><i class="<?=$a->icon;?>"></i></div>
+                    <h3><?=$a->name;?></h3>
+                    <p><?=$a->distance;?></p>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+
 <section id="mainGallery">
     <div class="container">
         <div class="row">

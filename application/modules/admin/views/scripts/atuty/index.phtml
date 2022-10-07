@@ -5,18 +5,16 @@
             <table width="100%" cellspacing="0" cellpadding="0" class="tableStatic adm" id="sortable">
                 <thead>
                 <tr>
-                    <th width="30%">Cyfra</th>
-                    <th width="30%">Jednostka</th>
-                    <th width="30%">Tekst</th>
+                    <th width="40%">Nazwa</th>
+                    <th width="50%">Odległość</th>
                     <th width="10%"></th>
                 </tr>
                 </thead>
                 <tbody class="content">
                 <?php foreach($this->lista as $pozycja) : ?>
                     <tr id="recordsArray_<?=$this->escape($pozycja->id);?>">
-                        <td><?=$this->escape($pozycja->cyfra);?></td>
-                        <td><?=$this->escape($pozycja->jednostka);?></td>
-                        <td><?=$this->escape($pozycja->tekst);?></td>
+                        <td><?=$this->escape($pozycja->name);?></td>
+                        <td><?=$this->escape($pozycja->distance);?></td>
                         <td class="right">
                             <a href="<?=$this->baseUrl();?>/admin/atuty/edit/id/<?=$this->escape($pozycja->id);?>/" class="actionBtn tip btnEdit" title="Edytuj"></a>
                             <a href="<?=$this->baseUrl();?>/admin/atuty/delete/id/<?=$this->escape($pozycja->id);?>/" class="actionBtn tip btnDelete confirm" title="Usuń"></a>

@@ -23,7 +23,7 @@ class Default_InwestycjePlanController extends kCMS_Site
     /* Plan inwestycji */
     public function indexAction() {
 
-        $tag = $this->getRequest()->getParam('tag');
+        $tag = $this->getRequest()->getParam('invest_slug');
 
         $s_action = $this->getRequest()->getParam('a');
         $s_pokoje = $this->_request->getParam('s_pokoje');
@@ -145,6 +145,7 @@ class Default_InwestycjePlanController extends kCMS_Site
                 }
 
                 $powierzchniaQuery->where('typ !=?', 4);
+                $powierzchniaQuery->order('order_numer ASC');
 
                 $powierzchnia = $this->roomModel->fetchAll($powierzchniaQuery);
 
@@ -178,7 +179,7 @@ class Default_InwestycjePlanController extends kCMS_Site
             'page' => $this->page,
             'pietra' => $pietra,
             'listamieszkan' => 1,
-            'building' => 1,
+            'floor' => 1,
             'tip' => 1
         );
 

@@ -12,9 +12,8 @@ class Form_AtutForm extends Zend_Form
         $this->setName('nazwaplik');
         $this->setAttrib('class', 'mainForm');
 
-        $cyfra = new Zend_Form_Element_Text('cyfra');
-        $cyfra->setLabel('Cyfra')
-            ->setRequired(true)
+        $name = new Zend_Form_Element_Text('name');
+        $name->setLabel('Nazwa')
             ->setAttrib('size', 83)
             ->setAttrib('class', 'validate[required]')
             ->addValidator('NotEmpty')
@@ -25,9 +24,8 @@ class Form_AtutForm extends Zend_Form
                 array('Label'),
                 array(array('row' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRow'))));
 
-        $jednostka = new Zend_Form_Element_Text('jednostka');
-        $jednostka->setLabel('Jednostka')
-            ->setRequired(true)
+        $distance = new Zend_Form_Element_Text('distance');
+        $distance->setLabel('Odległość')
             ->setAttrib('size', 83)
             ->setAttrib('class', 'validate[required]')
             ->addValidator('NotEmpty')
@@ -38,9 +36,8 @@ class Form_AtutForm extends Zend_Form
                 array('Label'),
                 array(array('row' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRow'))));
 
-        $tekst = new Zend_Form_Element_Text('tekst');
-        $tekst->setLabel('Tekst')
-            ->setRequired(true)
+        $icon = new Zend_Form_Element_Text('icon');
+        $icon->setLabel('Ikonka')
             ->setAttrib('size', 83)
             ->setAttrib('class', 'validate[required]')
             ->addValidator('NotEmpty')
@@ -64,9 +61,9 @@ class Form_AtutForm extends Zend_Form
 
         $this->setDecorators(array('FormElements',array('HtmlTag'),'Form',));
         $this->addElements(array(
-            $cyfra,
-            $jednostka,
-            $tekst,
+            $name,
+            $distance,
+            $icon,
             $submit
         ));
     }

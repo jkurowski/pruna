@@ -1,9 +1,26 @@
 <div class="invest-page">
+    <div class="container">
+        <div class="row row-plan-nav">
+            <div class="col-12 col-sm-4">
+                <?php if($this->inwestycja->id == 2) { ?>
+                    <a href="<?=$this->url(array('invest_slug' => 'etap-1'), 'inwestycja-plan');?>" class="bttn bttn-gold pr-5 pl-5 bttn-sm mt-0 mb-4">Etap 1</a>
+                <?php } ?>
+            </div>
+            <div class="col-12 col-sm-4 text-center">
+                <a href="<?=$this->url(array(), 'inwestycje');?>" class="bttn bttn-gold pr-5 pl-5 bttn-sm mt-0 mb-4">Wybór etapu</a>
+            </div>
+            <div class="col-12 col-sm-4 text-right">
+                <?php if($this->inwestycja->id == 1) { ?>
+                    <a href="<?=$this->url(array('invest_slug' => 'etap-2'), 'inwestycja-plan');?>" class="bttn bttn-gold pr-5 pl-5 bttn-sm mt-0 mb-4">Etap 2</a>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
 <?php if($this->plan->plik) { ?>
     <div id="plan">
-        <div class="container p-0">
-            <div class="row no-gutters">
-                <div class="col-12 p-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
                     <div id="planImg"><img src="<?=$this->filesUrl(); ?>/inwestycje/plan/<?=$this->plan->plik;?>" alt="<?=$this->inwestycja->nazwa;?>" style="max-width:100%;height:auto;" id="myimagemap" usemap="#imagemap"></div>
                     <map name="imagemap">
                         <?php if($this->inwestycja->typ == 2) {
@@ -32,7 +49,7 @@
                             foreach($this->powierzchnia as $mieszkania) {
                                 $html = $mieszkania->html;
                                 if($mieszkania->status <> 2) {
-                                    $mieszkanie = str_replace('href=""','href="'.$this->url(array('tag' => $this->inwestycja->slug, 'numer' => $mieszkania->numer), 'inwestycja-domek').'/" data-id="'.$mieszkania->id.'"', $html);
+                                    $mieszkanie = str_replace('href=""','href="'.$this->url(array('invest_slug' => $this->inwestycja->slug, 'numer' => $mieszkania->numer), 'inwestycja-domek', null, false).'/" data-id="'.$mieszkania->id.'"', $html);
                                 } else {
                                     $mieszkanie = str_replace('href=""','href="#"', $html);
                                 }

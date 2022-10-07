@@ -11,8 +11,8 @@ class Form_InwestycjaForm extends Zend_Form
 
         $typ = new Zend_Form_Element_Select('typ');
         $typ->setLabel('Typ')
-            ->addMultiOption('2','Inwestycja budynkowa')
-            //->addMultiOption('3','Inwestycja z domami')
+            //->addMultiOption('2','Inwestycja budynkowa')
+            ->addMultiOption('3','Inwestycja z domami')
             ->setDecorators(array(
                 'ViewHelper',
                 'Errors',
@@ -73,7 +73,7 @@ class Form_InwestycjaForm extends Zend_Form
         $lista->setLabel('Krótki opis na liście')
             ->setRequired(true)
             ->setAttrib('size', 103)
-            ->setFilters(array('StripTags', 'StringTrim'))
+            //->setFilters(array('StripTags', 'StringTrim'))
             ->setAttrib('class', 'validate[required]')
             ->setDecorators(array(
                 'ViewHelper',
@@ -122,7 +122,7 @@ class Form_InwestycjaForm extends Zend_Form
                 array(array('row' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRow'))));
 
         $obrazek_lista = new Zend_Form_Element_File('obrazek_lista');
-        $obrazek_lista->setLabel('Miniaturka na liście<br /><span style="font-size:11px;color:#A8A8A8">(wymiary: 680px / 510px)</span>')
+        $obrazek_lista->setLabel('Miniaturka na liście<br /><span style="font-size:11px;color:#A8A8A8">(wymiary: 900px / 506px)</span>')
             ->setRequired(false)
             ->addValidator('NotEmpty')
             ->addValidator('Extension', false, 'jpg, png, jpeg, gif')
@@ -166,15 +166,15 @@ class Form_InwestycjaForm extends Zend_Form
         $this->addElements(array(
             $typ,
             $nazwa,
-            //$lista,
-            //$meta_tytul,
-            //$meta_opis,
+            $lista,
+            $meta_tytul,
+            $meta_opis,
             //$zakres_powierzchnia,
             //$zakres_pokoje,
             //$zakres_pietra,
             //$email,
-            //$obrazek_lista,
-            //$obrazek_header,
+            $obrazek_lista,
+            $obrazek_header,
             $submit
         ));
     }

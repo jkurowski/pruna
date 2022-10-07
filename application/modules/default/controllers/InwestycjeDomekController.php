@@ -20,8 +20,8 @@ class Default_InwestycjeDomekController extends kCMS_Site
         $db->setFetchMode(Zend_Db::FETCH_OBJ);
 
         $numer = $this->getRequest()->getParam('numer');
-        $tag = $this->getRequest()->getParam('tag');
-        $inwestycja = $this->Investment->getByTag('sucharskiego');
+        $tag = $this->getRequest()->getParam('invest_slug');
+        $inwestycja = $this->Investment->getByTag($tag);
 
         if($inwestycja){
             $mieszkanie = $this->Room->getRoom($inwestycja->id, $numer);

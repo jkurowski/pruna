@@ -111,6 +111,7 @@ class Model_RoomModel  extends Zend_Db_Table_Abstract
 		$query = $this->select()
                 ->where('id_inwest =?', $id)
                 ->where('order_numer > ?', $numer)
+                ->order('order_numer ASC')
                 ->limit(1);
         $mieszkanie = $this->fetchRow($query);
 

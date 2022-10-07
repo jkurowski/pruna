@@ -1,82 +1,115 @@
 $(document).ready(function() {
-    $(".floormap").mapster({
-        onClick: function(g) {
-            var f = $(this).attr("data-color");
-            if (f != "plan-status-2") {
+    $("#areaControl").on("change", function () {
+        const f = this.options[this.selectedIndex].value;
+        const e = Qurl.create();
+        e.query("s_area", f);
+        location.reload()
+    });
+    $("#roomControl").on("change", function () {
+        const f = this.options[this.selectedIndex].value;
+        const e = Qurl.create();
+        e.query("s_room", f);
+        location.reload()
+    });
+
+    $("#myimagemap").mapster({
+        onClick: function() {
+            const f = $(this).attr("data-color");
+            if (f !== "plan-status-2") {
                 window.open(this.href, "_self")
             } else {
                 return false
             }
         },
         fillOpacity: 0.8,
-        onMouseover: function(g) {
-            var f = $(this).attr("data-color");
-            if (f == "plan-status-1") {
+        onMouseover: function() {
+            const f = $(this).attr("data-color");
+            if (f === "plan-status-1") {
                 $(this).mapster("set", false).mapster("set", true, {
-                    fillColor: "3a9019",
-                    fillOpacity: 0.8
+                    fillColor: "25690c",
+                    fillOpacity: 0.8,
+                    stroke: true,
+                    strokeColor: 'a78a49',
+                    strokeOpacity: 1,
+                    strokeWidth: 1
                 })
             }
-            if (f == "plan-status-2") {
+            if (f === "plan-status-2") {
                 $(this).mapster("set", false).mapster("set", true, {
-                    fillColor: "ec2327",
-                    fillOpacity: 0.8
+                    fillColor: "aa1215",
+                    fillOpacity: 0.8,
+                    stroke: true,
+                    strokeColor: 'a78a49',
+                    strokeOpacity: 1,
+                    strokeWidth: 1
                 })
             }
-            if (f == "plan-status-3") {
+            if (f === "plan-status-3") {
                 $(this).mapster("set", false).mapster("set", true, {
-                    fillColor: "f29378",
-                    fillOpacity: 0.8
+                    fillColor: "1660b3",
+                    fillOpacity: 0.8,
+                    stroke: true,
+                    strokeColor: 'a78a49',
+                    strokeOpacity: 1,
+                    strokeWidth: 1
                 })
             }
-            if (f == "plan-status-4") {
+            if (f === "plan-status-4") {
                 $(this).mapster("set", false).mapster("set", true, {
-                    fillColor: "c58f59",
-                fillOpacity: 0.8
+                    fillColor: "1660b3",
+                    fillOpacity: 0.8,
+                    stroke: true,
+                    strokeColor: 'a78a49',
+                    strokeOpacity: 1,
+                    strokeWidth: 1
                 })
             }
         },
-        onMouseout: function(f) {
+        onMouseout: function() {
             $(this).mapster("set", false);
 
-			$("area[data-color='plan-status-1']").mapster("set", true, {
-				fillColor: "3a9019",
-				fillOpacity: 0.5
-			});
+            $("area[data-color='plan-status-1']").mapster("set", true, {
+                fillColor: "25690c",
+                fillOpacity: 0.5,
+                stroke: false
+            });
             $("area[data-color='plan-status-2']").mapster("set", true, {
-                fillColor: "ec2327",
-                fillOpacity: 0.5
+                fillColor: "aa1215",
+                fillOpacity: 0.5,
+                stroke: false
             });
 
             $("area[data-color='plan-status-3']").mapster("set", true, {
-                fillColor: "f29378",
-                fillOpacity: 0.5
+                fillColor: "1660b3",
+                fillOpacity: 0.5,
+                stroke: false
             });
 
             $("area[data-color='plan-status-4']").mapster("set", true, {
-				fillColor: "c58f59",
-				fillOpacity: 0.5
-			});
+                fillColor: "1660b3",
+                fillOpacity: 0.5,
+                stroke: false
+            });
         }
     });
 
     $("area[data-color='plan-status-1']").mapster("set", true, {
-        fillColor: "3a9019",
+        fillColor: "25690c",
         fillOpacity: 0.5
     });
 
     $("area[data-color='plan-status-2']").mapster("set", true, {
-        fillColor: "ec2327",
+        fillColor: "aa1215",
         fillOpacity: 0.5
     });
 
     $("area[data-color='plan-status-3']").mapster("set", true, {
-        fillColor: "f29378",
+        fillColor: "1660b3",
         fillOpacity: 0.5
     });
 
     $("area[data-color='plan-status-4']").mapster("set", true, {
-		fillColor: "c58f59",
-		fillOpacity: 0.5
-	});
+        fillColor: "1660b3",
+        fillOpacity: 0.5
+    });
 });

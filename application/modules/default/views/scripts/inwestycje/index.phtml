@@ -1,21 +1,41 @@
 <div id="inwest-list">
+
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="corner-holder">
+                    <img src="<?=$this->filesUrl(); ?>/inwestycje/plan/mainplan-all.jpg" usemap="#myimagemap" id="myimagemap" alt="Plan wyboru etapu">
+                    <map name="myimagemap">
+                        <area target="_blank" alt="" title="<h3>Etap 1</h3><p>Znajdź swoje miejsce wśród 3 lub 4 pokojowych mieszkań o powierzchni 88 m<sup>2</sup>.</p><p>Mieszkania na parterze mają swoje ogródki, natomiast w mieszkaniach na piętrze znajdziesz komfortowy balkon.</p><p>Każde mieszkanie dysponuje dwoma miejscami parkingowymi.</p>" href="<?=$this->url(array('invest_slug' => 'etap-1'), 'inwestycja-plan');?>" coords="321,877,785,570,226,69,201,67,146,78,136,59,121,44,35,57,45,84,9,103" shape="poly" class="qtip-etap">
+
+                        <area target="_blank" alt="" title="<h3>Etap 2</h3><p>Potrzebujesz więcej przestrzeni? Dwukondygnacyjny lokal z własnym ogródkiem to coś dla Ciebie.</p><p>Wybierz salon i cztery sypialnie na 101 lub 107m<sup>2</sup>, do tego ogródek i dwa miejsca postojowe.</p>" href="<?=$this->url(array('invest_slug' => 'etap-2'), 'inwestycja-plan');?>" coords="1035,643,1487,237,1450,225,1471,191,1471,180,1325,141,1305,163,1299,180,1288,176,1294,168,1234,151,1244,126,1220,101,1191,107,711,313,713,357,684,371" shape="poly" class="qtip-etap">
+
+                        <area target="_blank" alt="" title="<h3>Etap 3</h3><p>Już wkrótce</p>" href="#" coords="557,274,1037,101,1014,91,1023,64,1010,55,936,34,922,49,903,45,905,32,888,13,443,116,433,127,441,156,416,167" shape="poly" class="qtip-etap">
+                    </map>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
         <?php foreach($this->inwestycje as $int => $i){?>
         <div class="row inwest-item <?php echo fmod($int, 2) ? '' : 'flex-row-reverse' ?>">
             <div class="col-7">
                 <div class="inwest-thumb">
-                    <a href="<?=$this->url(array('tag' => $i->slug), 'inwestycja-plan');?>">
+                    <a href="<?=$this->url(array('invest_slug' => $i->slug), 'inwestycja-plan');?>">
                         <div class="corner-holder">
-                            <img src="<?=$this->filesUrl(); ?>/inwestycje/miniaturka/<?=$i->plik_thumb;?>" alt="<?=$i->nazwa;?>" class="corner-radius">
+                            <img src="<?=$this->filesUrl(); ?>/inwestycje/miniaturka/<?=$i->plik_thumb;?>" alt="<?=$i->nazwa;?>">
                         </div>
                     </a>
                 </div>
             </div>
             <div class="col-5 pl-5 d-flex align-items-center">
                 <div class="inwest-desc">
-                    <h2 class="underline"><?=$i->nazwa;?></h2>
+                    <h2 class="section-title mb-3"><a href="<?=$this->url(array('invest_slug' => $i->slug), 'inwestycja-plan');?>"><?=$i->nazwa;?></a></h2>
                     <p><?=$i->lista;?></p>
-                    <a href="<?=$this->url(array('tag' => $i->slug), 'inwestycja-plan');?>" class="bttn bttn-sm mb-0">ZOBACZ WIĘCEJ</a>
+                    <a href="<?=$this->url(array('invest_slug' => $i->slug), 'inwestycja-plan');?>" class="bttn bttn-sm mb-0">ZOBACZ WIĘCEJ</a>
                 </div>
             </div>
         </div>

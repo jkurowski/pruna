@@ -99,8 +99,9 @@ $(document).ready(function(){
 					<tr>
 						<th width="5%" class="center">Numer</th>
 						<th width="55%">Nazwa</th>
-						<th width="10%">Powierzchnia</th>
-						<th width="10%">Status</th>
+						<th width="10%" class="center">Kolejność</th>
+						<th width="10%" class="center">Powierzchnia</th>
+						<th width="10%" class="center">Status</th>
 						<th width="10%"></th>
                         <?php if($this->canbetranslate){?><th width="10%"></th><?php } ?>
 					</tr>
@@ -110,8 +111,9 @@ $(document).ready(function(){
 				<tr id="recordsArray_<?=$this->escape($lista->id);?>">
 				<td class="center"><?=$this->escape($lista->numer);?></td>
 				<td><?=$this->escape($lista->nazwa);?></td>
-				<td><?=$this->escape($lista->metry);?> m<sup>2</sup></td>
-				<td><?=$this->roomStatus($lista->status);?></td>
+				<td class="center"><?=$this->escape($lista->order_numer);?></td>
+				<td class="center"><?=$this->escape($lista->metry);?> m<sup>2</sup></td>
+				<td class="center"><?=$this->roomStatus($lista->status);?></td>
 				<td class="right">
 				    <a href="<?=$this->baseUrl();?>/admin/inwestycje-powierzchnia/edit/id/<?=$this->escape($lista->id);?>/i/<?=$this->inwestycja->id;?>/" class="actionBtn tip btnEdit" title="Edytuj"></a>
 				    <a href="<?=$this->baseUrl();?>/admin/inwestycje-powierzchnia/delete/id/<?=$this->escape($lista->id);?>/i/<?=$this->inwestycja->id;?>/" class="actionBtn tip btnDelete confirm" title="Usuń"></a>
