@@ -419,26 +419,26 @@ button:focus {
   font-weight: 600;
   text-transform: uppercase;
 }
-.subpage #nav nav,
-.subpage #nav ul,
+#nav nav,
+#nav ul,
 .fixed #nav nav,
 .fixed #nav ul {
   height: 100%;
 }
 .fixed #nav ul li,
-.subpage #nav ul li {
+#nav ul li {
   display: inline-flex;
   align-items: center;
 }
 .fixed #nav ul li a,
-.subpage #nav ul li a {
+#nav ul li a {
   color: #1a4f25;
 }
-.subpage .fixed #nav ul li a {
+fixed #nav ul li a {
   color: #1a4f25;
   font-size: 19px;
 }
-.subpage #nav ul li a {
+#nav ul li a {
   font-size: 21px;
 }
 nav li a.cta {
@@ -540,13 +540,10 @@ header.fixed {
   margin-right: 8px;
 }
 .header-holder {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
-}
-.subpage .header-holder {
   position: static;
   height: 135px;
 }
@@ -1805,10 +1802,10 @@ p.info.down:after {
   }
 }
 @media (max-width: 1420px) {
-  .subpage .header-holder {
+  .header-holder {
     height: 99px;
   }
-  .subpage #nav ul li a {
+  #nav ul li a {
     font-size: 18px;
   }
   #nav ul li {
@@ -1868,7 +1865,7 @@ p.info.down:after {
   }
 }
 @media (max-width: 1090px) {
-  .subpage .fixed #nav ul li a {
+  .fixed #nav ul li a {
     font-size: 18px;
   }
   #logo {
@@ -1895,7 +1892,7 @@ p.info.down:after {
   #mainInvestor {
     padding: 50px 0;
   }
-  .subpage .header-holder {
+  .header-holder {
     height: 55px;
   }
   #nav ul li.scrollsection,
