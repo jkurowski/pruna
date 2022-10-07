@@ -189,10 +189,11 @@ $(document).ready(function(){
 		const offset = $(this).data("offset");
 		$('html, body').stop().animate({
 			scrollTop: $(section).offset().top - offset
-		}, 1500, 'easeInOutExpo');
-		// if ($('body').hasClass("openmenu")) {
-		// 	$('body').removeClass("openmenu");
-		// }
+		}, 1500, 'easeInOutExpo', function() {
+			if ($('body').hasClass("openmenu")) {
+				$('body').removeClass("openmenu");
+			}
+		});
 	});
 
 // Tooltip
