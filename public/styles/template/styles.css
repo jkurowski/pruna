@@ -367,6 +367,55 @@ button:focus {
 .invalid-feedback {
   line-height: normal;
 }
+/* Fonty
+================================================== */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../../fonts/fontawesome-webfont.eot');
+  src: url('../../fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/fontawesome-webfont.woff') format('woff'), url('../../fonts/fontawesome-webfont.ttf') format('truetype'), url('../../fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.fa-icons:before,
+.fa-icons:after {
+  display: inline-block;
+  font-family: "FontAwesome";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+  font-family: 'Simpleicons';
+  src: url('../../fonts/Simple-Line-Icons.eot?v=2.4.0');
+  src: url('../../fonts/Simple-Line-Icons.eot?v=2.4.0#iefix') format('embedded-opentype'), url('../../fonts/Simple-Line-Icons.woff2?v=2.4.0') format('woff2'), url('../../fonts/Simple-Line-Icons.ttf?v=2.4.0') format('truetype'), url('../../fonts/Simple-Line-Icons.woff?v=2.4.0') format('woff'), url('../../fonts/Simple-Line-Icons.svg?v=2.4.0#simple-line-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+p .pdf,
+p .doc {
+  display: block;
+  margin-top: 0;
+  color: #616161;
+  font-size: 15px;
+}
+p .pdf:before,
+p .doc:before {
+  font-family: 'FontAwesome';
+  margin-right: 8px;
+  color: #c58f51;
+}
+p .pdf:before {
+  content: "\f1c1";
+}
+p .doc:before {
+  content: "\f1c2";
+}
 .bttn {
   font-size: 18px;
   display: inline-flex;
