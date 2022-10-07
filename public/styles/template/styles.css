@@ -1674,6 +1674,102 @@ p.info.down:after {
 .header-full {
   display: none;
 }
+/* RWD
+================================================== */
+.closemenu {
+  width: 40px;
+  height: 40px;
+  background: #b97a5d;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border-radius: 50%;
+  display: none;
+  z-index: 999;
+}
+.closemenu:before {
+  content: "\f00d";
+  font-family: "FontAwesome";
+  color: white;
+  font-size: 20px;
+}
+#triggermenu {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0 14px;
+  transition: all 200ms linear;
+  cursor: pointer;
+  height: 38px;
+  border: 1px solid #bfbfbf;
+  display: flex;
+  align-items: center;
+}
+#triggermenu:hover {
+  background: #fff;
+  color: #054a27;
+}
+#triggermenu:before {
+  font-family: 'FontAwesome';
+  content: "\f0c9";
+  margin-right: 10px;
+  font-weight: normal;
+  width: 14px;
+  display: inline-block;
+  color: #a78a49;
+}
+.openmenu #triggermenu {
+  background: #fff;
+  color: #054a27;
+}
+.openmenu #triggermenu:before {
+  content: "\f00d";
+}
+.openmenu header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: white;
+}
+.openmenu #nav ul li.scrollsection,
+.openmenu #nav ul li.pagemenu {
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+}
+.openmenu .scrollsection.li-1,
+.openmenu .pagemenu.li-1 {
+  top: 80px;
+}
+.openmenu .scrollsection.li-2,
+.openmenu .pagemenu.li-2 {
+  top: 145px;
+}
+.openmenu .scrollsection.li-3,
+.openmenu .pagemenu.li-3 {
+  top: 210px;
+}
+.openmenu .scrollsection.li-4,
+.openmenu .pagemenu.li-4 {
+  top: 275px;
+}
+.openmenu .scrollsection.li-5,
+.openmenu .pagemenu.li-5 {
+  top: 340px;
+}
+.openmenu .scrollsection.li-6,
+.openmenu .pagemenu.li-6 {
+  top: 405px;
+}
 @media (max-width: 1700px) {
   .section-title {
     font-size: 55px;
@@ -1706,6 +1802,26 @@ p.info.down:after {
     font-size: 16px;
     padding: 17px 0;
     min-width: 275px;
+  }
+}
+@media (max-width: 1420px) {
+  .subpage .header-holder {
+    height: 99px;
+  }
+  .subpage #nav ul li a {
+    font-size: 18px;
+  }
+  #nav ul li {
+    margin-right: 25px;
+  }
+  nav li a.cta {
+    border: 1px solid #dfdfdf;
+    padding: 5px;
+    display: flex;
+  }
+  #logo {
+    margin: 25px;
+    width: 150px;
   }
 }
 @media (max-width: 1360px) {
@@ -1751,6 +1867,22 @@ p.info.down:after {
     font-size: 16px;
   }
 }
+@media (max-width: 1090px) {
+  .subpage .fixed #nav ul li a {
+    font-size: 18px;
+  }
+  #logo {
+    margin: 25px 0;
+    width: 180px;
+    padding: 0 15px;
+  }
+  #nav ul li {
+    margin-right: 15px;
+  }
+  nav li a.cta i {
+    font-size: 24px;
+  }
+}
 /* end of 991.98 */
 @media (max-width: 991.98px) {
   #mainInvestor .section-apla-text,
@@ -1762,6 +1894,31 @@ p.info.down:after {
   }
   #mainInvestor {
     padding: 50px 0;
+  }
+  .subpage .header-holder {
+    height: 55px;
+  }
+  #nav ul li.scrollsection,
+  #nav ul li.pagemenu {
+    display: none;
+  }
+  #logo {
+    margin: 9px;
+    width: 115px;
+    padding: 0;
+  }
+  .row-plan-nav .bttn.bttn-sm {
+    width: 100%;
+    padding: 10px 0 !important;
+  }
+  #pageheader {
+    padding: 20px 0;
+  }
+  .inwest-item {
+    margin-bottom: 40px;
+  }
+  .inwest-item:last-child {
+    margin-bottom: 0;
   }
 }
 /* end of 991.98 */
@@ -1793,6 +1950,31 @@ p.info.down:after {
   #mapHolder {
     height: 250px;
   }
+  #page {
+    padding: 30px 10px;
+  }
+  .view {
+    display: none;
+  }
+  .row-atuty {
+    padding: 0 0 0 30px;
+  }
+  .location-box-small {
+    padding: 15px 15px 15px 36px;
+    margin-bottom: 20px;
+  }
+  .location-box-small h3 {
+    font-size: 15px;
+    line-height: 17px;
+  }
+  .location-box-icon i {
+    font-size: 22px;
+  }
+  .location-box-small .location-box-icon {
+    width: 36px;
+    height: 36px;
+    left: -18px;
+  }
 }
 /* end of 575.98 */
 @media (max-width: 420px) {
@@ -1815,6 +1997,19 @@ p.info.down:after {
   #mainHeader h3.section-title {
     font-size: 32px;
     margin-bottom: 20px !important;
+  }
+  .col-12.col-list {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  #pageheader {
+    padding: 10px 0;
+  }
+  #pageheader h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 27px;
   }
 }
 /* end of 420 */

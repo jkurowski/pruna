@@ -26,7 +26,7 @@
 
         <div class="row row-mieszkanie">
             <div class="col-12 col-md-5">
-                <div class="mieszkanie-dane mt-5 pt-5 position-relative">
+                <div class="mieszkanie-dane mt-3 mt-sm-5 pt-3 pt-sm-5 position-relative">
                     <div class="<?=$this->roomStatusTag($this->mieszkanie->status);?>-ap mieszkanie-status">
                         <?=$this->roomStatus($this->mieszkanie->status);?>
                     </div>
@@ -55,11 +55,11 @@
                     </ul>
                     <div class="container-fluid p-0">
                         <div class="row">
-                            <div class="col-6 text-center">
-                                <?php if($this->mieszkanie->pdf){?><a href="<?=$this->filesUrl(); ?>/inwestycje/pdf/<?=$this->mieszkanie->pdf;?>" title="Pobierz plan mieszkania" class="bttn text-left bttn-pdf mt-3 mt-md-4 mb-4 mb-md-0" target="_blank"><span>Pobierz plan</span></a><?php } ?>
+                            <div class="col-12 col-sm-6 text-center">
+                                <?php if($this->mieszkanie->pdf){?><a href="<?=$this->filesUrl(); ?>/inwestycje/pdf/<?=$this->mieszkanie->pdf;?>" title="Pobierz plan mieszkania" class="bttn text-left bttn-pdf mt-0 mt-sm-4 mb-4 mb-md-0" target="_blank"><span>Pobierz plan</span></a><?php } ?>
                             </div>
-                            <div class="col-6 text-center">
-                                <a href="<?=$this->filesUrl(); ?>/upload/standard_wykonania_sadyba.pdf" title="Standard wykonania" class="bttn text-left bttn-pdf mt-3 mt-md-4 mb-4 mb-md-0" target="_blank"><span>Standard wykonania</span></a>
+                            <div class="col-12 col-sm-6 text-center">
+                                <a href="<?=$this->filesUrl(); ?>/upload/standard_wykonania_sadyba.pdf" title="Standard wykonania" class="bttn text-left bttn-pdf mt-0 mt-sm-4 mb-4 mb-md-0" target="_blank"><span>Standard wykonania</span></a>
                             </div>
                         </div>
                     </div>

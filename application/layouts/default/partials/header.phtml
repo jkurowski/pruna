@@ -2,24 +2,24 @@
     <header>
         <div id="nav" class="container-fluid p-0">
             <div class="row no-gutters">
-                <div class="col-3">
+                <div class="col-6 col-lg-2 col-xl-3">
                     <div id="logo">
                         <a href="<?=$this->baseUrl;?>/" class="d-block">
                             <img src="<?=$this->gfxUrl();?>/sadyba-logo.png" alt="<?= $this->header['nazwa']; ?>" width="220" height="70">
                         </a>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-6 col-lg-10 col-xl-9">
                     <nav>
                         <?php if(Zend_Auth::getInstance()->hasIdentity()){?>
                             <ul class="list-unstyled mb-0">
                                 <li<?php if($this->current_controller == 'index') {?> class="scrollsection li-1"<?php } else {?> class="pagemenu li-1"<?php } ?>><a href="<?php if($this->current_controller <> 'index') {?><?=$this->baseUrl;?>/<?php } ;?>#mainHeader" data-offset="0">O inwestycji</a></li>
-                                <li><a href="<?=$this->baseUrl;?>/inwestycja/">Mieszkania</a></li>
+                                <li class="pagemenu li-2"><a href="<?=$this->baseUrl;?>/inwestycja/">Mieszkania</a></li>
                                 <li<?php if($this->current_controller == 'index') {?> class="scrollsection li-3"<?php } else {?> class="pagemenu li-3"<?php } ?>><a href="<?php if($this->current_controller <> 'index') {?><?=$this->baseUrl;?>/<?php } ;?>#mapHolder" data-offset="55">Lokalizacja</a></li>
                                 <li<?php if($this->current_controller == 'index') {?> class="scrollsection li-4"<?php } else {?> class="pagemenu li-4"<?php } ?>><a href="<?php if($this->current_controller <> 'index') {?><?=$this->baseUrl;?>/<?php } ;?>#mainGallery" data-offset="0">Galeria</a></li>
                                 <li<?php if($this->current_controller == 'index') {?> class="scrollsection li-5"<?php } else {?> class="pagemenu li-5"<?php } ?>><a href="<?php if($this->current_controller <> 'index') {?><?=$this->baseUrl;?>/<?php } ;?>#mainInvestor" data-offset="0">Inwestor</a></li>
                                 <li<?php if($this->current_controller == 'index') {?> class="scrollsection li-6"<?php } else {?> class="pagemenu li-6"<?php } ?>><a href="<?php if($this->current_controller <> 'index') {?><?=$this->baseUrl;?>/<?php } ;?>#mainContact" data-offset="0">Kontakt</a></li>
-                                <li class="mobilemenu d-block d-lg-none"><a href="#" id="triggermenu">MENU</a></li>
+                                <li class="mobilemenu d-flex d-lg-none"><a href="#" id="triggermenu">MENU</a></li>
                                 <li class="mr-3"><a href="mailto:<?= $this->header['kontakt_email']; ?>" class="cta"><i class="las la-envelope-open-text"></i></a></li>
                                 <li><a href="tel:<?= $this->header['kontakt_telefon']; ?>" class="cta"><i class="las la-phone-alt"></i></a></li>
                             </ul>

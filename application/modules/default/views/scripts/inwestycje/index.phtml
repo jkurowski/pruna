@@ -22,7 +22,7 @@
     <div class="container mt-5">
         <?php foreach($this->inwestycje as $int => $i){?>
         <div class="row inwest-item <?php echo fmod($int, 2) ? '' : 'flex-row-reverse' ?>">
-            <div class="col-7">
+            <div class="col-12 col-lg-7">
                 <div class="inwest-thumb">
                     <a href="<?=$this->url(array('invest_slug' => $i->slug), 'inwestycja-plan');?>">
                         <div class="corner-holder">
@@ -31,7 +31,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-5 pl-5 d-flex align-items-center">
+            <div class="col-12 col-lg-5 pl-3 pl-lg-5 pt-4 pt-lg-0 d-flex align-items-center">
                 <div class="inwest-desc">
                     <h2 class="section-title mb-3"><a href="<?=$this->url(array('invest_slug' => $i->slug), 'inwestycja-plan');?>"><?=$i->nazwa;?></a></h2>
                     <p><?=$i->lista;?></p>
