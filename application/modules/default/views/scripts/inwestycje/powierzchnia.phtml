@@ -28,7 +28,14 @@
             <div class="col-12 col-md-5">
                 <div class="mieszkanie-dane mt-3 mt-sm-5 pt-3 pt-sm-5 position-relative">
                     <div class="<?=$this->roomStatusTag($this->mieszkanie->status);?>-ap mieszkanie-status">
-                        <?=$this->roomStatus($this->mieszkanie->status);?>
+
+                        <?php if($this->inwestycja->id == 1) {?>
+                            <?=$this->roomStatus($this->mieszkanie->status);?>
+                        <?php } ?>
+                        <?php if($this->inwestycja->id == 2) {?>
+                            <?=$this->lokalStatus($this->mieszkanie->status);?>
+                        <?php } ?>
+
                     </div>
                     <?php if($this->mieszkanie->cena) {?>
                         <h6 class="price"><?=number_format($this->mieszkanie->cena , 0, ',', ' ');?> zł</h6>
