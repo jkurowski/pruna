@@ -5,13 +5,13 @@ class Zend_View_Helper_RoomStatus extends Zend_View_Helper_Abstract {
 	public function roomStatus($numer){
 		switch ($numer) {
 			case '1':
-				return 'Dostępne';
+				return 'Dostępny';
 			case '2':
-				return 'Sprzedane';
+				return 'Sprzedany';
 			case '3':
 				return 'Rezerwacja';
 			case '4':
-                return 'Wynajęte';
+                return 'Wynajęty';
             case '5':
                 return 'Do wynajęcia';
 		}

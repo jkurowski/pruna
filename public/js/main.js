@@ -83,6 +83,17 @@ if (uri.indexOf("#") > 0) {
 }
 
 $(function() {
+	const cc = $.cookie('list_grid');
+	if (cc === 'g') {
+		$('#offerList').addClass('grid');
+		$('.view #grid').addClass('active');
+	} else {
+		$('#offerList').addClass('list');
+		$('.view #list').addClass('active');
+	}
+});
+
+$(function() {
 	$('div#aside i').remove();
 
 	$('<select id="sidemenuselect" />').appendTo("div#aside");
@@ -113,6 +124,30 @@ $(function() {
 //makeWidget();
 
 $(document).ready(function(){
+	$('#grid').click(function() {
+		$('.view span').removeClass('active');
+		$(this).addClass('active');
+		$('#offerList').fadeOut(300, function() {
+			$(this).addClass('grid').removeClass('list').fadeIn(300, function() {
+
+			});
+			$.cookie('list_grid', 'g');
+		});
+		return false;
+	});
+
+	$('#list').click(function() {
+		$('.view span').removeClass('active');
+		$(this).addClass('active');
+		$('#offerList').fadeOut(300, function() {
+			$(this).removeClass('grid').addClass('list').fadeIn(300, function() {
+
+			});
+			$.cookie('list_grid', 'l');
+		});
+		return false;
+	});
+
 // Menu
 	const aboveHeight = $('header').outerHeight();
 	$(window).scroll(function(){
