@@ -12,7 +12,7 @@ class Default_GalleryController extends kCMS_Site
         $this->galleryModel = new Model_GalleryModel();
         $this->photoModel = new Model_PhotoModel();
 
-        $this->page = $this->menuModel->getById(3);
+        $this->page = $this->menuModel->getById(5);
         $this->_helper->layout->setLayout('page');
     }
 
@@ -48,12 +48,12 @@ class Default_GalleryController extends kCMS_Site
             $gallery = $this->galleryModel->getBySlug($slug);
 
             if(!$gallery) {
-                $this->_redirect('/galeria/');
+                $this->redirect('/galeria/');
             }
 
             $photos = $this->photoModel->getByCategory($gallery->id);
 
-            $breadcrumbs = '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="' . $this->view->url(array(), 'gallery') . '"><span itemprop="name">' . $this->page->nazwa . '</span></a></li><li class="sep"></li>';
+            $breadcrumbs = '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="' . $this->view->url(array(), 'galeria') . '"><span itemprop="name">' . $this->page->nazwa . '</span></a></li><li class="sep"></li>';
             $breadcrumbs .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><b itemprop="item">'.$gallery->nazwa.'</b></li>';
 
             $array = array(

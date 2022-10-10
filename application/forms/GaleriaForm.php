@@ -61,9 +61,9 @@ class Form_GaleriaForm extends Zend_Form
 
         $this->setDecorators(array('FormElements',array('HtmlTag'),'Form',));
         $this->addElements(array(
-            //$status,
+            $status,
             $nazwa,
-            //$obrazek,
+            $obrazek,
             $submit
         ));
     }

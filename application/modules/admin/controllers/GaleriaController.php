@@ -204,7 +204,7 @@ class Admin_GaleriaController extends kCMS_Admin
                 $options2 = array('jpegQuality' => 60);
 
 				PhpThumbFactory::create($upfile, $options)
-                    ->resize(1024, 1024)
+                    ->resize(1920, 1920)
                     ->save($upfile);
 
 				PhpThumbFactory::create($upfile, $options2)
@@ -246,12 +246,12 @@ class Admin_GaleriaController extends kCMS_Admin
 				$id = $checkbox[$i];
 				$pic = $db->fetchRow($db->select()->from('galeria_zdjecia')->where('id = ?',$id));
 
-				unlink(FILES_PATH."/galeria/".$pic->plik);
+				unlink(FILES_PATH."/galeria/big/".$pic->plik);
 				unlink(FILES_PATH."/galeria/thumbs/".$pic->plik);
 
 				$where = $db->quoteInto('id = ?', $id);
 				$db->delete('galeria_zdjecia', $where);
 			}
-			$this->_redirect('/admin/galeria/show/id/'.$pic->id_gal.'/');
+			$this->redirect('/admin/galeria/show/id/'.$pic->id_gal.'/');
 	}
 }

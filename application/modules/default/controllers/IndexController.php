@@ -47,7 +47,7 @@ class Default_IndexController extends kCMS_Site
 //            'plan' => $this->planModel->fetchRow($this->planModel->select()->where('id_inwest =?', 1)),
             'photos' => $this->photoModel->fetchAll($this->photoModel->select()->order('sort ASC')->where('id_gal =?', 1)),
 //            'slider' => $this->sliderModel->fetchRow($this->sliderModel->select()->order('sort ASC')),
-//            'contact' => $this->menuModel->getById(3),
+            'contact' => $this->menuModel->getById(3),
            'atuty' => $this->atutModel->fetchAll($this->atutModel->select()->order('sort ASC')),
 //            'boksy' => $this->boxModel->fetchAll($this->boxModel->select()->order('sort ASC')),
             'message' => $trySendEmail
