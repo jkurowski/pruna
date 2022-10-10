@@ -56,6 +56,8 @@
                                 <?php if($this->inwestycja->typ == 3) {?>
                                     <?php if($powierzchnia->ogrodek) {?>
                                     <li class="li-inwest-rwd">ogródek: <span><?=$powierzchnia->ogrodek;?>&nbsp; m<sup>2</sup></li>
+                                    <?php } else { ?>
+                                    <li class="li-inwest-rwd">&nbsp;</li>
                                     <?php } ?>
                                 <?php } else {?>
                                     <?php if($powierzchnia->typ <> 4){?>
