@@ -106,9 +106,12 @@
         <?php } ?>
 	});
 
-    $(window).load(function() {
+    $(window).bind('load', function(){
         if(window.location.hash) {
             const section = window.location.hash;
+
+            console.log(section);
+
             $('html, body').stop().animate({
                 scrollTop: $(section).offset().top - 80
             }, 1500, 'easeInOutExpo');
