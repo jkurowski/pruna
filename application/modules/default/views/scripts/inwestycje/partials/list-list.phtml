@@ -73,7 +73,12 @@
                         <div class="col text-center d-flex align-items-center">
                             <div class="pl-3 pr-3 w-100">
                                 <div class="<?=$this->roomStatusTag($powierzchnia->status);?>-ap">
-                                    <?=$this->roomStatus($powierzchnia->status);?>
+                                    <?php if($this->inwestycja->id == 1) {?>
+                                        <?=$this->roomStatus($powierzchnia->status);?>
+                                    <?php } ?>
+                                    <?php if($this->inwestycja->id == 2) {?>
+                                        <?=$this->lokalStatus($powierzchnia->status);?>
+                                    <?php } ?>
                                 </div>
                                 <?php if($powierzchnia->cena) {?>
                                     <h6 class="price mb-0"><?=number_format($powierzchnia->cena , 0, ',', ' ');?> zł</h6>
