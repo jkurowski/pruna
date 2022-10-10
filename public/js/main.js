@@ -75,13 +75,6 @@ function fbShare(d,c,b){var a=(screen.height/2)-(b/2);var e=(screen.width/2)-(c/
 function process_responseIcons(response, formType){var frm=$("#eventForm3"); var i; for (i in response){frm.find('[name="' + i + '"]').val(response[i]);}}
 function process_responseGfx(response, formType){var frm=$("#eventForm5"); var i; for (i in response){frm.find('[name="' + i + '"]').val(response[i]);}}
 
-const uri = window.location.toString();
-if (uri.indexOf("#") > 0) {
-	const clean_uri = uri.substring(0, uri.indexOf("#"));
-	window.history.replaceState({},
-		document.title, clean_uri);
-}
-
 $(function() {
 	const cc = $.cookie('list_grid');
 	if (cc === 'g') {
@@ -165,14 +158,6 @@ $(document).ready(function(){
 		$('header').addClass('fixed');
 		$('header').animate({'top': '0px'}, {duration: 300});
 	}
-
-	$('#mainpage .mainmenu').onePageNav({
-		currentClass: 'active',
-		changeHash: false,
-		scrollSpeed: 1500,
-		scrollThreshold: 0.2,
-		easing: 'easeInOutExpo'
-	});
 
 // Menu
 	$("#triggermenu, .closemenu").click(function(b){
