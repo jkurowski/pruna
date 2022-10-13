@@ -24,7 +24,7 @@ class Default_InwestycjeController extends kCMS_Site
             $array = array(
                 'strona_id' => $this->page->id,
                 'strona_h1' => 'Osiedle Sadyba',
-                'strona_tytul' => $this->page->nazwa,
+                'strona_tytul' => ' - '.$this->page->nazwa,
                 'seo_tytul' => $this->page->meta_tytul,
                 'seo_opis' => $this->page->meta_opis,
                 'seo_slowa' => $this->page->meta_slowa,
