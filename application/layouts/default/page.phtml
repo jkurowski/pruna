@@ -10,7 +10,7 @@
 <?php if($this->seo_tytul) {?>
 	<title><?= $this->seo_tytul; ?></title>
 <?php } else { ?>
-	<title><?= $this->header['nazwa']; ?><?= $this->strona_tytul; ?></title>
+	<title><?= $this->header['nazwa']; ?> <?= $this->strona_tytul; ?></title>
 <?php } ?>
 <?php if($this->seo_opis) {?>
 	<meta name="description" content="<?= $this->seo_opis; ?>">
