@@ -213,6 +213,7 @@ $(document).ready(function(){
 			if ($('body').hasClass("openmenu")) {
 				$('body').removeClass("openmenu");
 			}
+			$('.mfp-ready').remove();
 		});
 	});
 
