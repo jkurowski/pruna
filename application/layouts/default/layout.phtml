@@ -76,6 +76,7 @@
         });
 
         <?php if($this->header['popup_status'] == 1){; ?>
+
         <?php if($this->header['popup_tryb'] == 1){; ?>
         $.cookie('popup', null);
         $.magnificPopup.open({
@@ -103,6 +104,16 @@
         <?php } ?>
         <?php } else {?>
         $.cookie('popup', null);
+        $(".scrollsection a").click(function (e) {
+            e.preventDefault();
+            const section = $(this).attr('href');
+            const offset = $(this).data("offset");
+            $('html, body').stop().animate({
+                scrollTop: $(section).offset().top - offset
+            }, 1500, 'easeInOutExpo', function() {
+                $('.mfp-ready').remove();
+            });
+        });
         <?php } ?>
 	});
 
