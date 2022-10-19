@@ -83,6 +83,20 @@
             items: {
                 src: '<div class="white-popup"><?= str_replace (array("\r\n", "\n", "\r"), ' ', $this->header["popup_tekst"]); ?></div>',
                 type: 'inline'
+            },
+            callbacks: {
+                open: function() {
+                    $(".scrollsection a").click(function (e) {
+                        e.preventDefault();
+                        const section = $(this).attr('href');
+                        const offset = $(this).data("offset");
+                        $('html, body').stop().animate({
+                            scrollTop: $(section).offset().top - offset
+                        }, 1500, 'easeInOutExpo', function() {
+                            $('.mfp-ready').remove();
+                        });
+                    });
+                }
             }
         });
         setTimeout( function(){
@@ -94,6 +108,20 @@
                 items: {
                     src: '<div class="white-popup"><?= str_replace (array("\r\n", "\n", "\r"), ' ', $this->header["popup_tekst"]); ?></div>',
                     type: 'inline'
+                },
+                callbacks: {
+                    open: function() {
+                        $(".scrollsection a").click(function (e) {
+                            e.preventDefault();
+                            const section = $(this).attr('href');
+                            const offset = $(this).data("offset");
+                            $('html, body').stop().animate({
+                                scrollTop: $(section).offset().top - offset
+                            }, 1500, 'easeInOutExpo', function() {
+                                $('.mfp-ready').remove();
+                            });
+                        });
+                    }
                 }
             });
             setTimeout( function(){
@@ -104,16 +132,6 @@
         <?php } ?>
         <?php } else {?>
         $.cookie('popup', null);
-        $(".scrollsection a").click(function (e) {
-            e.preventDefault();
-            const section = $(this).attr('href');
-            const offset = $(this).data("offset");
-            $('html, body').stop().animate({
-                scrollTop: $(section).offset().top - offset
-            }, 1500, 'easeInOutExpo', function() {
-                $('.mfp-ready').remove();
-            });
-        });
         <?php } ?>
 	});
 
