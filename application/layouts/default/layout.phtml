@@ -86,7 +86,7 @@
         });
         setTimeout( function(){
             $.magnificPopup.close();
-        }, 5000 );
+        }, 10000 );
         <?php } else {?>
         if ($.cookie('popup') == null){
             $.magnificPopup.open({
@@ -97,7 +97,7 @@
             });
             setTimeout( function(){
                 $.magnificPopup.close();
-            }, 5000 );
+            }, 10000 );
             $.cookie('popup','true');
         }
         <?php } ?>
