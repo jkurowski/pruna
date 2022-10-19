@@ -30,7 +30,7 @@ function show5(){if(!document.layers&&!document.all&&!document.getElementById){r
 
 function tinymce () {
 		tinyMCE_GZ.init({
-			plugins:'table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager,xhtmlxtras',
+			plugins:'table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager',
 			theme : "advanced",
 			languages : 'pl',
 			disk_cache : true,
@@ -39,7 +39,7 @@ function tinymce () {
 		tinyMCE.init({
 			selector: "textarea.editor",
 			theme : "advanced",
-			plugins : "table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager,xhtmlxtras,kcmsplugin",
+			plugins : "table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontsizeselect",
 			theme_advanced_buttons2 : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,image,cleanup,code,|,insertdate,inserttime|,forecolor,backcolor",
 			theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,media,attribs,|,galleryList,sliderList,karuzelaList,mapList",
@@ -69,7 +69,7 @@ function tinymce () {
 		tinyMCE.init({
 			selector: "textarea.smalleditor",
 			theme : "advanced",
-			plugins : "table,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager,xhtmlxtras",
+			plugins : "table,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough",
 			theme_advanced_buttons2 : "bullist,numlist,link,unlink,code,forecolor",
 			theme_advanced_buttons3 : "hr,sub,sup,attribs",
@@ -98,7 +98,7 @@ function tinymce () {
 		tinyMCE.init({
 			selector: "textarea.minieditor",
 			theme : "advanced",
-			plugins : "table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager,xhtmlxtras",
+			plugins : "table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough",
 			theme_advanced_buttons2 : "bullist,numlist,link,unlink,code,forecolor,image,|,justifyleft,justifycenter,justifyright,justifyfull",
 			theme_advanced_buttons3 : "hr,sub,sup,attribs",
