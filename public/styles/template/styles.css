@@ -1319,7 +1319,15 @@ html.swipebox-html.swipebox-touch {
 }
 .mieszkanie-dane .rezerwacja-ap {
   color: white;
-  background: #1660b3;
+  background: #bb6f0c;
+}
+.mieszkanie-dane .wkrotce-ap {
+  color: white;
+  background: #676767;
+}
+.mieszkanie-dane .przedsprzedaz-ap {
+  color: white;
+  background: #2168c1;
 }
 .mieszkanie-dane .mieszkanie-status {
   left: -26px;
@@ -1347,6 +1355,12 @@ html.swipebox-html.swipebox-touch {
 }
 .mieszkanie-status.rezerwacja-ap:before {
   border-color: transparent #1660b3 transparent transparent;
+}
+.mieszkanie-status.wkrotce-ap:before {
+  border-color: transparent #676767 transparent transparent;
+}
+.mieszkanie-status.przedsprzedaz-ap:before {
+  border-color: transparent #2168c1 transparent transparent;
 }
 .mieszkanie-dane h4 {
   color: #000;
@@ -1419,7 +1433,8 @@ html.swipebox-html.swipebox-touch {
 }
 .dostepny-ap,
 .sprzedany-ap,
-.rezerwacja-ap {
+.rezerwacja-ap,
+.wkrotce-ap {
   font-size: 22px;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;

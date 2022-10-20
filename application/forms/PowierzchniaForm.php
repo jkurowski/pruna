@@ -314,8 +314,8 @@ class Form_PowierzchniaForm extends Zend_Form
 		->addMultiOption('1','Na sprzedaż')
 		->addMultiOption('2','Sprzedane')
 		->addMultiOption('3','Rezerwacja')
-		->addMultiOption('4','Wynajęte')
-		->addMultiOption('5','Do wynajęcia')
+		->addMultiOption('4','Wkrótce w sprzedaży')
+		->addMultiOption('5','Przedsprzedaż ')
 		->setDecorators(array(
 		'ViewHelper',
 		'Errors',

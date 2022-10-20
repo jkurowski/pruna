@@ -11,7 +11,9 @@ class Zend_View_Helper_RoomStatusTag extends Zend_View_Helper_Abstract {
 			case '3':
 				return "rezerwacja";
 			case '4':
-				return "wynajete";
+				return "wkrotce";
+            case '5':
+				return "przedsprzedaz";
 		}
 	}
 }
