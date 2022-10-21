@@ -46,7 +46,7 @@ $(document).ready(function() {
             }
             if (f === "plan-status-3") {
                 $(this).mapster("set", false).mapster("set", true, {
-                    fillColor: "1660b3",
+                    fillColor: "cc6e00",
                     fillOpacity: 0.8,
                     stroke: true,
                     strokeColor: 'a78a49',
@@ -90,7 +90,7 @@ $(document).ready(function() {
             });
 
             $("area[data-color='plan-status-3']").mapster("set", true, {
-                fillColor: "1660b3",
+                fillColor: "cc6e00",
                 fillOpacity: 0.5,
                 stroke: false
             });
@@ -120,7 +120,7 @@ $(document).ready(function() {
     });
 
     $("area[data-color='plan-status-3']").mapster("set", true, {
-        fillColor: "1660b3",
+        fillColor: "cc6e00",
         fillOpacity: 0.5
     });
 

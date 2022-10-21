@@ -10,7 +10,9 @@ class Zend_View_Helper_RoomStatus extends Zend_View_Helper_Abstract {
             case '3':
                 return '<span class="mieszkanie-rezerwacja">Rezerwacja</span>';
             case '4':
-                return '<span class="mieszkanie-wynajete">Wynajęte</span>';
+                return '<span class="mieszkanie-wkrotce">Wkrótce w sprzedaży</span>';
+            case '5':
+                return '<span class="mieszkanie-przedsprzedaz">Przedsprzedaż</span>';
         }
     }
 }

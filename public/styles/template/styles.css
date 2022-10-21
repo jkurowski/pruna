@@ -601,7 +601,7 @@ button::-moz-focus-inner {
 #nav ul li a {
   color: #1a4f25;
 }
-fixed #nav ul li a {
+.fixed #nav ul li a {
   color: #1a4f25;
   font-size: 19px;
 }
@@ -1441,18 +1441,30 @@ html.swipebox-html.swipebox-touch {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
+/*
+		->addMultiOption('1','Na sprzedaż')
+		->addMultiOption('2','Sprzedane')
+		->addMultiOption('3','Rezerwacja')
+		->addMultiOption('4','Wkrótce w sprzedaży')
+		->addMultiOption('5','Przedsprzedaż ')
+ */
+/* 1 */
 .dostepny-ap {
   color: #25690c;
 }
+/* 2 */
 .sprzedany-ap {
   color: #aa1215;
 }
+/* 3 */
 .rezerwacja-ap {
-  color: #1660b3;
+  color: #cc6e00;
 }
+/* 4 */
 .wkrotce-ap {
   color: #676767;
 }
+/* 5 */
 .przedsprzedaz-ap {
   color: #2168c1;
 }
@@ -1471,12 +1483,12 @@ html.swipebox-html.swipebox-touch {
   background: #aa1215 !important;
 }
 .qtip.plan-status-3 .qtip-content {
-  background: #1660b3;
-  border: 1px solid #1660b3;
+  background: #cc6e00;
+  border: 1px solid #cc6e00;
 }
 .qtip-tip.plan-status-3 canvas {
-  background: #1660b3 !important;
-  color: black;
+  background: #cc6e00 !important;
+  color: #fff;
 }
 .qtip.plan-status-4 .qtip-content {
   background: #676767;
