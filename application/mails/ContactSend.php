@@ -83,6 +83,29 @@ class Mails_ContactSend extends Zend_Db_Table_Abstract
                 $checkbox = preg_grep("/zgoda_([0-9])/i", array_keys($formData));
                 historylog($name, $email, $remoteAddress, $browser, $checkbox);
 
+                $mail3 = new Zend_Mail('UTF-8');
+                $mail3
+                    ->setFrom($ustawienia->email, 'Osiedle Sadyba')
+                    ->addTo('dvme.lead@dewelopercrm.com', 'VOX CRM')
+                    ->setSubject('Zapytanie ze strony Osiedle Sadyba - Kontakt')
+                    ->setBodyText('
+						INWESTYCJA:
+						Osiedle Sadyba
+						IMIE:
+						'. $name .'
+						EMAIL:
+						'. $email .'
+						TELEFON:
+						'. $phone .'
+						OPIS:
+						'. $message.'
+						ZGODY:
+						ZGODA_MARKETING (Wyrażam zgodę na przetwarzanie moich danych osobowych przez PRUNA Development Sp. z o.o. z siedzibą w Płońsku (KRS: 0000874244) w celu marketingu bezpośredniego dotyczącego własnych produktów i usług. Oświadczam, że zapoznałam/em się z informacjami dotyczącymi przetwarzania danych osobowych.)
+						ZGODA_MAIL (Wyrażam zgodę na otrzymywanie od PRUNA Development Sp. z o.o. z siedzibą w Płońsku (KRS: 0000874244) ofert marketingowych za pomocą środków komunikacji elektronicznej, zgodnie z art. 10 ust. 2 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną.)
+						ZGODA_TEL (Wyrażam zgodę na otrzymywanie od PRUNA Development Sp. z o.o. z siedzibą w Płońsku (KRS: 0000874244) ofert marketingowych przy użyciu telekomunikacyjnych urządzeń końcowych (w szczególności telefonu) i automatycznych systemów wywołujących, zgodnie z art. 172 ust. 1 ustawy z dnia 16 lipca 2004 r. Prawo telekomunikacyjne.)');
+
+                $mail3->send();
+
                 return 1;
 
             } else {
