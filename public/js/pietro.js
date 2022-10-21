@@ -56,7 +56,17 @@ $(document).ready(function() {
             }
             if (f === "plan-status-4") {
                 $(this).mapster("set", false).mapster("set", true, {
-                    fillColor: "1660b3",
+                    fillColor: "676767",
+                    fillOpacity: 0.8,
+                    stroke: true,
+                    strokeColor: 'a78a49',
+                    strokeOpacity: 1,
+                    strokeWidth: 1
+                })
+            }
+            if (f === "plan-status-5") {
+                $(this).mapster("set", false).mapster("set", true, {
+                    fillColor: "2168c1",
                     fillOpacity: 0.8,
                     stroke: true,
                     strokeColor: 'a78a49',
@@ -86,7 +96,13 @@ $(document).ready(function() {
             });
 
             $("area[data-color='plan-status-4']").mapster("set", true, {
-                fillColor: "1660b3",
+                fillColor: "676767",
+                fillOpacity: 0.5,
+                stroke: false
+            });
+
+            $("area[data-color='plan-status-5']").mapster("set", true, {
+                fillColor: "2168c1",
                 fillOpacity: 0.5,
                 stroke: false
             });
@@ -109,7 +125,12 @@ $(document).ready(function() {
     });
 
     $("area[data-color='plan-status-4']").mapster("set", true, {
-        fillColor: "1660b3",
+        fillColor: "676767",
+        fillOpacity: 0.5
+    });
+
+    $("area[data-color='plan-status-5']").mapster("set", true, {
+        fillColor: "2168c1",
         fillOpacity: 0.5
     });
 });
