@@ -8,9 +8,27 @@ class Admin_InwestycjeController extends kCMS_Admin
 			$this->view->controlname = "Inwestycje";
 			$this->listaszerokosc = 680;
 			$this->listawysokosc = 510;
-		}
-		
-		public function ustawAction() {
+
+        function statusCRM($numer){
+            switch ($numer) {
+                case '1':
+                    return '<span class="mieszkanie-wolne">Na sprzedaż</span>';
+                case '2':
+                case '3':
+                    return '<span class="mieszkanie-sprzedane">Sprzedane</span>';
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                    return '<span class="mieszkanie-rezerwacja">Rezerwacja</span>';
+                case '9':
+                    return '<span class="mieszkanie-wkrotce">Wkrótce w sprzedaży</span>';
+            }
+        }
+    }
+
+    public function ustawAction() {
 			$db = Zend_Registry::get('db');
 			$tabela = $this->_request->getParam('co');
 			$updateRecordsArray = $_POST['recordsArray'];
@@ -21,7 +39,29 @@ class Admin_InwestycjeController extends kCMS_Admin
 				$listingCounter = $listingCounter + 1;
             }
 		}
-	
+
+################################################### VOX ###################################################
+
+// Pokaz wybrana inwestycje
+    public function voxAction() {
+        $db = Zend_Registry::get('db');
+
+        $id = (int)$this->getRequest()->getParam('id');
+        $inwestycja = $this->view->inwestycja = $db->fetchRow($db->select()->from('inwestycje')->where('id = ?', $id));
+
+
+        $headers = get_headers($inwestycja->url_crm, 1);
+        if ($headers[0] == 'HTTP/1.1 200 OK') {
+            $feed = file_get_contents($inwestycja->url_crm);
+            $xml = simplexml_load_string($feed);
+
+            $this->view->rooms = $xml;
+
+        } else {
+            echo 'Brak połączenia z CRM';
+        }
+    }
+
 ################################################### INWESTYCJA ###################################################
 // Pokaz wybrana inwestycje
     public function showAction() {

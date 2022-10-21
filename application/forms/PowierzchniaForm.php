@@ -357,8 +357,22 @@ class Form_PowierzchniaForm extends Zend_Form
 		array(array('data' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRight')),
 		array('Label'),
 		array(array('row' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRow'))));
-		
-		$glowna = new Zend_Form_Element_Select('glowna');
+
+        $id_crm = new Zend_Form_Element_Text('id_crm');
+        $id_crm->setLabel('Wartość id CRM')
+            ->setRequired(true)
+            ->setAttrib('size', 83)
+            ->setAttrib('class', 'validate[required]')
+            ->setFilters(array('StripTags', 'StringTrim'))
+            ->addValidator('NotEmpty')
+            ->setDecorators(array(
+                'ViewHelper',
+                'Errors',
+                array(array('data' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRight')),
+                array('Label'),
+                array(array('row' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRow'))));
+
+        $glowna = new Zend_Form_Element_Select('glowna');
         $glowna->setLabel('Pokaż na stronie głównej')
 		->addMultiOption('0','Nie')
 		->addMultiOption('1','Tak')
@@ -597,6 +611,7 @@ class Form_PowierzchniaForm extends Zend_Form
             $order_numer,
             $numer_pietro,
 			$pokoje,
+            $id_crm,
 			//$okno,
 			// $typ_okno,
 			// $ogrzewanie,

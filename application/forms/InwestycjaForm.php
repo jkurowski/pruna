@@ -149,6 +149,18 @@ class Form_InwestycjaForm extends Zend_Form
                 array('Label', array('escape' => false)),
                 array(array('row' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRow'))));
 
+        $url_crm = new Zend_Form_Element_Text('url_crm');
+        $url_crm->setLabel('Link do mieszkań CRM')
+            ->setRequired(true)
+            ->setAttrib('size', 103)
+            ->setFilters(array('StripTags', 'StringTrim'))
+            ->setAttrib('class', 'validate[required]')
+            ->setDecorators(array(
+                'ViewHelper',
+                'Errors',
+                array(array('data' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRight')),
+                array('Label'),
+                array(array('row' => 'HtmlTag'), array('tag' => 'div', 'class' => 'formRow'))));
 
         // Polskie tlumaczenie errorów
         $polish = kCMS_Polish::getPolishTranslation();
@@ -166,6 +178,7 @@ class Form_InwestycjaForm extends Zend_Form
         $this->addElements(array(
             $typ,
             $nazwa,
+            $url_crm,
             $lista,
             $meta_tytul,
             $meta_opis,

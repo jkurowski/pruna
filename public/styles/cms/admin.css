@@ -131,6 +131,7 @@ hr.bgwhite {background-color:#fff}
 .btnMobile:after {content:"\f10b"}
 .btnCopy:after {content:"\f0c5"}
 .btnImport:after {content:"\f093"}
+.btnXML:after {content:"\f093"}
 .btnPage:after {content:"\f0f6"}
 
 .child:before {content:"\21b3";margin-right:13px;font-size:20px}
@@ -143,11 +144,21 @@ hr.bgwhite {background-color:#fff}
 .inweststat-2.typ-4 {background:#5800c5}
 .inweststat-4 {background:#4a4a4a}
 
-.mieszkanie-wolne, .mieszkanie-sprzedane, .mieszkanie-rezerwacja, .mieszkanie-wynajete {color:white;display:inline-block;padding:3px 8px}
+.mieszkanie-wolne,
+.mieszkanie-sprzedane,
+.mieszkanie-rezerwacja,
+.mieszkanie-wynajete,
+.mieszkanie-wkrotce
+{
+    color:white;
+    display:inline-block;
+    padding:3px 8px
+}
 .mieszkanie-wolne {background:green}
 .mieszkanie-sprzedane {background:#940000}
 .mieszkanie-rezerwacja {background:#0063a9}
 .mieszkanie-wynajete {background:#ea8400}
+.mieszkanie-wkrotce {background: #999}
 
 /* Panel logowania
 ================================================== */

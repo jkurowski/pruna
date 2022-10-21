@@ -33,6 +33,9 @@
 					<td class="center"><?=$this->escape($l->data_dodania);?></td>
 					<td class="center"><?=$this->escape($l->data_edycji);?></td>
 					<td class="right">
+                    <?php if($l->url_crm){?>
+                        <a href="<?=$this->baseUrl;?>/admin/inwestycje/vox/id/<?=$this->escape($l->id);?>/" class="actionBtn tip btnXML" title="Pokaż mieszkania CRM"></a>
+                    <?php } ?>
 					<?php if($l->typ <> 4){?>
 					<a href="<?=$this->baseUrl();?>/admin/inwestycje-plan/add/id/<?=$this->escape($l->id);?>/" class="actionBtn tip btnImage" title="Pokaż plan inwestycji"></a><?php } ?>
 					<a href="<?=$this->baseUrl();?>/admin/inwestycje/show/id/<?=$this->escape($l->id);?>/" class="actionBtn tip btnCatalog" title="Pokaż inwestycję"></a>
