@@ -2,36 +2,17 @@
 class Default_IndexController extends kCMS_Site
 {
 
-    private $inlineModel;
-    private $roomModel;
-    private $planModel;
     private $photoModel;
-    private $sliderModel;
     private $menuModel;
     private $atutModel;
-    private $boxModel;
-    private $floorModel;
 
     public function preDispatch() {
-        $this->inlineModel = new Model_InlineModel();
-        $this->roomModel = new Model_RoomModel();
-        $this->planModel = new Model_PlanModel();
         $this->photoModel = new Model_PhotoModel();
-        $this->sliderModel = new Model_SliderModel();
         $this->menuModel = new Model_MenuModel();
         $this->atutModel = new Model_AtutModel();
-        $this->boxModel = new Model_BoxModel();
-        $this->floorModel = new Model_FloorModel();
     }
 
     public function indexAction() {
-//        $floors = $this->floorModel->fetchAll($this->floorModel->select()->where('id_inwest = ?', 1)->order('numer_lista ASC')->order('typ ASC'));
-//
-//        $powierzchniaQuery = $this->roomModel->select()
-//            ->where('id_inwest = ?', 1);
-//        $powierzchniaQuery->where('typ !=?', 4);
-//        $domki = $this->roomModel->fetchAll($powierzchniaQuery);
-
         $trySendEmail = '';
 
         if ($this->_request->isPost()) {
@@ -40,16 +21,9 @@ class Default_IndexController extends kCMS_Site
         }
 
         $array = array(
-//            'inline' => $this->inlineModel->getInlineList(1),
-//            'floors' => $floors,
-//            'domki' => $domki,
-//            'editinline' => 1,
-//            'plan' => $this->planModel->fetchRow($this->planModel->select()->where('id_inwest =?', 1)),
             'photos' => $this->photoModel->fetchAll($this->photoModel->select()->order('sort ASC')->where('id_gal =?', 1)),
-//            'slider' => $this->sliderModel->fetchRow($this->sliderModel->select()->order('sort ASC')),
             'contact' => $this->menuModel->getById(3),
-           'atuty' => $this->atutModel->fetchAll($this->atutModel->select()->order('sort ASC')),
-//            'boksy' => $this->boxModel->fetchAll($this->boxModel->select()->order('sort ASC')),
+            'atuty' => $this->atutModel->fetchAll($this->atutModel->select()->order('sort ASC')),
             'message' => $trySendEmail
         );
 
