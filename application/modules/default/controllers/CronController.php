@@ -42,6 +42,7 @@ class Default_CronController extends kCMS_Site
                     $room_data = array(
                         'id' => (int) $a->id,
                         'metry' => (string) $a->area,
+                        'ogrodek' => (string) $a->ogrod,
                         'szukaj_metry' => (string) round($a->area),
                         'cena' => (string) $a->price,
                         'szukaj_cena' => round($a->price),
@@ -51,11 +52,11 @@ class Default_CronController extends kCMS_Site
                         'status' => statusCRM($a->status_id)
                     );
 
-                    echo '<pre>';
-                    print_r($room_data);
-                    echo '</pre>';
+//                     echo '<pre>';
+//                     print_r($room_data);
+//                     echo '</pre>';
 
-                    //$db->update('inwestycje_powierzchnia', $room_data, 'id_crm = '.(int) $a->id);
+                    $db->update('inwestycje_powierzchnia', $room_data, 'id_crm = '.(int) $a->id);
                 }
             }
 
