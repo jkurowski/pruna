@@ -82,7 +82,7 @@
                                         <?=$this->lokalStatus($powierzchnia->status);?>
                                     <?php } ?>
                                 </div>
-                                <?php if($powierzchnia->cena) {?>
+                                <?php if($powierzchnia->cena == 99999999999999999999) {?>
                                     <h6 class="price mb-0"><?=number_format($powierzchnia->cena , 0, ',', ' ');?> zł</h6>
                                 <?php } ?>
                             </div>
